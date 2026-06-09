@@ -1,0 +1,99 @@
+# 목표 : OhmioLibraries CAN 정보 파일 통합.
+
+기본 작업 사항 :
+    - 작업별로 폴더로 구분하여 해당 폴더내에서 이루어 진다.
+    - 작업 시작 전 '<작업 명>_예정_작업계획.md'로 정리하여 동의 후 진행한다.
+    - 작업 내용은 '<작업 명>_작업내용.md'로 정리한다.
+    - 오류 사항은 '<작업 명>_오류사항.md'로 정리한다.
+    - 사용자 점검 필요사항은 '<작업 명>_점검_필요사항.md'로 정리한다.
+        필요 내용 누락, 메세지 정의 충돌 등의 사용자 개입이 및 확인이 필요한 내용.
+    - 모든 작업은 '<작업 명>_작업기록.md'로 정리하여 작업 log를 기록한다.
+
+절대 규칙 :
+    모든 작업 및 결과물은'Codex' 폴더 내에서 수행 및 생성한다. 
+    원본 폴더 및 파일은 절대로 수정 및 훼손 하지 않는다 (읽기 전용)
+    원본 폴더 및 파일의 수정이 필요할 경우, 'Codex'폴더내에 복사 하여 수행하며 해당 작업에 대한 설명 및 기록을 남긴다.
+
+수행 작업:
+    OhmioLibraries, OhmioLibraries_36, OhmioLibraries_36/Ohmio_lib_include OhmioLibraries_BK 폴더 내의
+    Header 파일의 내용 차이 분석 및 통합.
+
+    분석 및 통합 할 file 목록
+
+    CAN Message & Signal 정의
+    additionalDbcCan.h - Chassis CAN
+    dbc_CAN_peripheral.h - Body CAN
+    dbc_CAN.h - Chassis CAN
+    Security_CAN.h - Body CAN
+
+    Signal Enum 정의
+    dbc_MsgID_main.h - Chassis CAN
+    dbc_MsgID_peripheral.h - Body CAN
+    dbc_MsgID_security.h - Body CAN
+
+    추가 참고 파일
+    ConversionHelper.h - 값 범위 계산
+
+    필요시 각 폴더내 다른 파일들도 참고.
+
+    1. file 비교 분석
+        - 폴더 내의 file 들에대해 상호 비교 분석 한다.
+            한쪽 파일에만 포함하고 있는 정보(내용) 등
+            내용 정의 충돌 - 같은 메세지에 대해 비트 범위 충돌 등
+
+        - Header_비교 폴더 생성 후 해당 폴더 내에서 작업한다.
+            /<폴더>_<폴더>_분석/ 폴더를 생성하여 각 상호 폴더 비교 내용을 구분
+            <Heder file>_분석내용.md 로 정리하여 결과 작성.
+            
+            e.g.
+                Header_비교/
+                ├── OhmioLibraries_OhmioLibraries_36_분석/
+                │   ├── additionalDbcCan_분석내용.md
+                │   ├── dbc_CAN_peripheral_분석내용.md
+                │   ...
+                │   └── dbc_MsgID_security_분석내용.md
+                ├── OhmioLibraries_OhmioLibraries_BK_분석/
+                │   ├── additionalDbcCan_분석내용.md
+                │   ├── dbc_CAN_peripheral_분석내용.md
+                │   ...
+                │   └── dbc_MsgID_security_분석내용.md
+                ├── OhmioLibraries_36_OhmioLibraries_BK_분석/
+                │   ├── additionalDbcCan_분석내용.md
+                │   ├── dbc_CAN_peripheral_분석내용.md
+                │   ...
+                │   └── dbc_MsgID_security_분석내용.md
+                ...
+                └── Ohmio_lib_include_OhmioLibraries_BK_분석/
+                    ├── additionalDbcCan_분석내용.md
+                    ├── dbc_CAN_peripheral_분석내용.md
+                    ...
+                └── dbc_MsgID_security_분석내용.md
+
+        - 'Reserved' Signal은 표현 그대로 Reserved Signal이며
+          정의 된 Signal이 아닌 bit field 정의에서 각 Signal의 bit 위치& 범위를 맞추기위한 dummy Signal이다.        
+          해당 위치에 다른 비교 파일에서 Signal정의가 되었다면 해당 정의 Signal로 대체한다.
+
+        - 현 프로젝트 폴대 내 포함하고 있는 모든 폴더 및 파일 외에는 추가 파일은 없다.
+          `void <Type alias>_ToCAN(<Type alias>_t * msg)`, `void <Type alias>_FromCAN(<Type alias>_t * msg)` 함수에 대한 함수 정의는
+          Signal 출돌이 없다면 확인 가능한 함수정의 내용을 따른다.
+
+
+
+    2. 파일 통합
+        분석한 내용을 기반으로 통합한다.
+        - 충돌 없이 같은 내용, 한쪽에만 있는 추가내용은 그대로 반영.
+        - 충돌이 있는경우는 주석 표시와 함께 사용자 점검 필요사항에 기록.
+
+        파일_통합 폴더 생성 후 작업한다.
+        e.g.
+
+            파일_통합/
+            └── canbus/
+                ├── additionalDbcCan.h
+                ├── ConversionHelper.h
+                ├── dbc_CAN.h
+                ├── dbc_CAN_peripheral.h
+                ├── dbc_MsgID_main.h
+                ├── dbc_MsgID_peripheral.h
+                ├── dbc_MsgID_security.h
+                └── Security_CAN.h

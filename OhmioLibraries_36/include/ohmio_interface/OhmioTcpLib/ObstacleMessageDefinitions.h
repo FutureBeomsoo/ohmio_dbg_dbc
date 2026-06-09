@@ -1,0 +1,20 @@
+#pragma once
+namespace OhmioTcp
+{
+	//! helper for traffic light related TCP communication
+	namespace ObstacleMessageDefinitions
+	{
+		// The messages we can send
+		enum class Commands
+		{
+			Invalid = 0,				//!< Leave 0 unused for converting strings to number 
+			SetObstacleLocationCommand,	//!< Sets an obstacle at a location
+			RemoveObstacleCommand,		//!< remove a static obstacle
+			GetObsCommand,			//!< Get external obstacles (that are set by  ObstacleLocationCommand)
+
+			// always add above this line
+			last
+		};
+	};
+}
+

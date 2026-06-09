@@ -1,0 +1,149 @@
+/**
+ * @file can_error.h
+ *  @brief \mainpage The can_error library is a low level library solely converting from raw can frames into c structures representing the data they store.
+ */
+
+ // !!! -------------------------------------------------------- !!!
+ // Deprecated file. Do not edit. you should use dbc_CAN.h instead
+ // !!! -------------------------------------------------------- !!!
+
+#pragma once
+#include <stdint.h>
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+#include "canbus/dbc_CAN.h"
+#include "canbus/dbc_MsgID_main.h"
+#include "canbus/can_general.h"
+
+/****************************************************************************************************
+**** General error packet ***************************************************************************
+*****************************************************************************************************/
+#define MAX_ERROR_BITS	64
+
+// For CAN message of ID:
+//   ERROR CAN ID  from 0x010 - 0x01F
+//
+typedef struct
+{
+    union {
+        uint8_t buf[8];
+        struct
+        {
+            uint64_t error_bits : MAX_ERROR_BITS;
+        } segments;
+    } raw;
+    bool error_flags[MAX_ERROR_BITS];
+} SystemErrorType;
+
+
+// message CAN_ID_MOTOR3_STATUS1 - error enum converted to bits
+enum Motor3StatusErrorCode
+{
+	// Note that we order the bits to match the old LeftMotorErrorCode bits
+	motor3_can_comms_timeout = 0,
+	motor3_over_temp,
+	// additional errors for the new motor
+	motor3_over_current,
+	motor3_over_volt,
+	motor3_low_volt,
+	motor3_miss_phase,
+	motor3_ctrl_over_temp,
+	motor3_zero_drift_over_range,
+	motor3_eeprom_write_error,
+	motor3_rotation_error,
+	motor3_volt_out_range,
+	motor3_block_error,
+	motor3_ad_cable_missing,
+	motor3_precharge_timeout,
+	motor3_drive_low_volt,
+	motor3_bms_volt_error,
+	motor3_over_speed,
+	motor3_can_command_error,
+	motor3_powerup_speed_error,
+	motor3_temp_sensor_miss,
+	motor3_req_count_overtime,
+	motor3_over_volt_contactor_off,
+	motor3_vdc_too_low,
+
+	//always add error codes above this
+	motor3status_NumErrorCodes,
+};
+
+// the 1st column is the error code, the 2nd is the bit to turn on for it
+static const uint64_t MotorErrorLUT[motor3status_NumErrorCodes][2] =
+{
+	{(uint64_t)MOTOR3_CAN_COMMS_TIMEOUT,		(uint64_t)0x000001},
+	{(uint64_t)MOTOR3_OVER_TEMP,				(uint64_t)0x000002},
+	{(uint64_t)MOTOR3_OVER_CURRENT,				(uint64_t)0x000004},
+	{(uint64_t)MOTOR3_OVER_VOLT,				(uint64_t)0x000008},
+	{(uint64_t)MOTOR3_LOW_VOLT,					(uint64_t)0x000010},
+	{(uint64_t)MOTOR3_MISS_PHASE,				(uint64_t)0x000020},
+	{(uint64_t)MOTOR3_CTRL_OVER_TEMP,			(uint64_t)0x000040},
+	{(uint64_t)MOTOR3_ZERO_DRIFT_OVER_RANGE,	(uint64_t)0x000080},
+	{(uint64_t)MOTOR3_EEPROM_WRITE_ERROR,		(uint64_t)0x000100},
+	{(uint64_t)MOTOR3_ROTATION_ERROR,			(uint64_t)0x000200},
+	{(uint64_t)MOTOR3_VOLT_OUT_RANGE,			(uint64_t)0x000400},
+	{(uint64_t)MOTOR3_BLOCK_ERROR,				(uint64_t)0x000800},
+	{(uint64_t)MOTOR3_AD_CABLE_MISSING,			(uint64_t)0x001000},
+	{(uint64_t)MOTOR3_PRECHARGE_TIMEOUT,		(uint64_t)0x002000},
+	{(uint64_t)MOTOR3_DRIVE_LOW_VOLT,			(uint64_t)0x004000},
+	{(uint64_t)MOTOR3_BMS_VOLT_ERROR,			(uint64_t)0x008000},
+	{(uint64_t)MOTOR3_OVER_SPEED,				(uint64_t)0x010000},
+	{(uint64_t)MOTOR3_CAN_COMMAND_ERROR,		(uint64_t)0x020000},
+	{(uint64_t)MOTOR3_POWERUP_SPEED_ERROR,		(uint64_t)0x040000},
+	{(uint64_t)MOTOR3_TEMP_SENSOR_MISS,			(uint64_t)0x080000},
+	{(uint64_t)MOTOR3_REQ_COUNT_OVERTIME,		(uint64_t)0x100000},
+	{(uint64_t)MOTOR3_OVER_VOLT_CONTACTOR_OFF,	(uint64_t)0x200000},
+	{(uint64_t)MOTOR3_VDC_TOO_LOW,				(uint64_t)0x400000},
+};
+
+
+static const unsigned lookupTable[LAST_UNIT_ID][2] =
+{
+	{(unsigned)CAN_ID_LOC_ERROR, (unsigned)Loc_NumErrorCodes},
+	{(unsigned)CAN_ID_DRIVE_ERROR, (unsigned)Drv_NumErrorCodes},
+	{(unsigned)CAN_ID_F_STEER_ERROR, (unsigned)Steer_NumErrorCodes},
+	{(unsigned)CAN_ID_R_STEER_ERROR, (unsigned)Steer_NumErrorCodes},
+	{(unsigned)CAN_ID_MANUAL_ERROR, (unsigned)0},     // not used 
+	{(unsigned)CAN_ID_FUSION_ERROR, (unsigned)Fusion_NumErrorCodes},
+	{(unsigned)CAN_ID_BLACK_BOX_ERROR, (unsigned)0},  // not used 
+	{(unsigned)CAN_ID_OBSTACLE_PC_ERROR, (unsigned)Obstacle_NumErrorCodes},
+	{(unsigned)CAN_ID_L_MOTOR_ERROR, (unsigned)motor3status_NumErrorCodes},
+	{(unsigned)CAN_O_ID_RESERVED, (unsigned)0},    // not used; rear motor
+	{(unsigned)CAN_ID_EHB_ERROR, (unsigned)EHB_NumErrorCodes},
+	{(unsigned)CAN_ID_ERROR_EHB_T060, (unsigned)T060_NumErrorCodes},       // T060 EHB
+	{(unsigned)CAN_ID_EPB1_ERROR, (unsigned)EPB_NumErrorCodes},
+	{(unsigned)CAN_ID_EPB2_ERROR, (unsigned)EPB_NumErrorCodes},
+	{(unsigned)CAN_ID_F_SIGNAL_ERROR, (unsigned)signal_NumErrorCodes},
+	{(unsigned)CAN_ID_R_SIGNAL_ERROR, (unsigned)signal_NumErrorCodes},
+	{(unsigned)CAN_P_ID_RESERVED, (unsigned)0},       // not implement; light controller 1
+	{(unsigned)CAN_P_ID_RESERVED, (unsigned)0},       // not implement; light controller 2
+	{(unsigned)CAN_ID_SAFETY_ERROR, (unsigned)Safety_NumErrorCodes},
+	{(unsigned)CAN_ID_STARTUP_ERROR, (unsigned)startup_NumErrorCodes},
+	{(unsigned)CAN_ID_LOC_EXT_WDT_ERROR, (unsigned)Atloc_NumErrorCodes},
+	{(unsigned)CAN_ID_DRIVE_EXT_WDT_ERROR, (unsigned)Atdrive_NumErrorCodes},
+	{(unsigned)CAN_ID_MANUAL_EXT_WDT_ERROR, (unsigned)Atmanual_NumErrorCodes},
+	{(unsigned)CAN_ID_FUSION_EXT_WDT_ERROR, (unsigned)Atfusion_NumErrorCodes},
+	{(unsigned)CAN_ID_FOOT1_ERROR, (unsigned)0},	// no eum exist yet. the value is 8 bits
+	{(unsigned)CAN_ID_FOOT2_ERROR, (unsigned)0},	// no eum exist yet. the value is 8 bits
+	{(unsigned)CAN_ID_ERROR_SECURITY, (unsigned)0},  // no eum exist yet. the value is 8 bits
+	{(unsigned)CAN_ID_MANAGEMENT_ERROR, (unsigned)mgt_NumErrorCodes},
+	{(unsigned)CAN_ID_ATMEL_SECURITY_ERROR, (unsigned)0}, // no eum exist yet. only 1 value exists
+	{(unsigned)CAN_O_ID_RESERVED, (unsigned)0},       // not implement; network communication
+	{(unsigned)CAN_P_ID_RESERVED, (unsigned)0},       // not implement; accessory 1
+	{(unsigned)CAN_P_ID_RESERVED, (unsigned)0},       // not implement; accessory 2
+	{(unsigned)CAN_ID_ERROR_FRONT_WHEEL_SPEED, (unsigned)wheel_NumErrorCodes},       // front wheel speed
+	{(unsigned)CAN_ID_ERROR_REAR_WHEEL_SPEED, (unsigned)wheel_NumErrorCodes},       // rear wheel speed
+	{(unsigned)CAN_O_ID_RESERVED, (unsigned)0},       // not implement; management interface
+	{(unsigned)CAN_O_ID_RESERVED, (unsigned)0},       // not implement; DBC
+	{(unsigned)CAN_ID_ERROR_DRIVE_EXT, (unsigned)Drvext_NumErrorCodes},       // drive extended error
+	{(unsigned)CAN_ID_FUS_ERROR, (unsigned)fus_NumErrorCodes},       // fusion error - 20ms
+	{(unsigned)CAN_ID_ERROR_TRANS, (unsigned)Trans_NumErrorCodes},       // translator board errors
+};
+
+void SystemErrorType_toCAN(SystemErrorType *frame, uint8_t no_of_bits);
+void SystemErrorType_fromCAN(SystemErrorType *frame, uint8_t no_of_bits);
+uint64_t Motor3ErrorCodeToBits(uint64_t errorLevel, uint64_t errorCode);
+int CanIdToUnitIndex(unsigned CanId);
+unsigned UnitIndexToCanId(int i);

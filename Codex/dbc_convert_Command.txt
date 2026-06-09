@@ -1,0 +1,470 @@
+# 목표 : CAN 헤더 파일을 참조 하여 Chassis 및 Body CAN bus에 대한 *.dbc file 생성.
+
+Chassis CAN : CAN 2.0A , Baudrate 500k sample time 0.8
+Body    CAN : CAN 2.0B , Baudrate 250k sample time 0.8
+
+수행 작업 및 절차: 
+
+    1-1. *.dbc 파일 별 CAN ID 에 대한 Message Name 정의.
+    1-2. 각 Message에 대한 Siganald의 Name, Signed type, start bit, length, factor, offset, min, max 정의.
+    2-1. *.dbc 파일 별 CAN Enum 정의.
+    2-2  Signal Eunm 사용 정의.
+
+기본 작업 사항 :
+    - 작업 시작 전 '<작업 명>_예정_작업계획.md'로 정리하여 동의 후 진행한다.
+    - 작업 내용은 '<작업 명>_작업내용.md'로 정리한다.
+    - 오류 사항은 '<작업 명>_오류사항.md'로 정리한다.
+    - 사용자 점검 필요사항은 '<작업 명>_점검_필요사항.md'로 정리한다.
+        필요 내용 누락, 메세지 정의 충돌 등의 사용자 개입이 및 확인이 필요한 내용.
+
+절대 규칙 :
+    모든 작업 및 결과물은'Codex' 폴더 내에서 수행 및 생성한다. 
+    원본 폴더 및 파일은 절대로 수정 및 훼손 하지 않는다 (읽기 전용)
+    원본 폴더 및 파일의 수정이 필요할 경우, 'Codex'폴더내에 복사 하여 수행하며 해당 작업에 대한 설명 및 기록을 남긴다.
+    
+
+기본 정의 :
+
+    File 구조 :
+
+        Header file 기본 구조:
+
+            ```
+            // message ID <CAN ID> <Message Name>
+            typedef struct{
+
+                union
+                {
+                    uint8_t buf[<Message Length>];
+
+                    struct
+                    {
+                        <Data Type> <Signal Name> : <Length>;
+                        <Data Type> <Signal Name> : <Length>;
+
+                        ...
+
+                        <Data Type> <Signal Name> : <Length>;
+
+                    } signals;
+
+                } raw;
+
+                <Physical Data Type> <Signal Name>;
+                <Physical Data Type> <Signal Name>;
+                
+                ...
+
+                <Physical Data Type> <Signal Name>;
+
+            } <Type alias>_t;
+
+            void <Type alias>_ToCAN(<Type alias>_t * msg);
+            void <Type alias>_FromCAN(<Type alias>_t * msg);
+            ```
+
+            부분 설명 :
+
+                - `// message ID <CAN ID> <Message Name>` 은 해당 메세지 타입을 사용하는 CAN Message의 'CAN ID'와 해당'Message Name'을 설명한다.
+                  만약 // message ID <CAN ID> <Message Name>가 'n'개 나열되어 있다면 'n'의 메세지 모두 같은 메세지 타입의 해당 메세지 구조을 가진다.
+
+                  e.g.
+                      ```
+                      // message ID 0x101 Example_Message1
+                      // message ID 0x102 Example_Message2
+                      // message ID 0x103 Example_Message3
+                      // message ID 0x104 Example_Message4
+                      typedef struct{
+                          union
+                          {
+                              uint8_t buf[8];
+  
+                              struct
+                              {
+                                  ...
+                              } signals;
+  
+                          } raw;
+                          ...
+                      } ExampleMsg_t;
+                      ```
+                      의 경우 Example_Message1, Example_Message2, Example_Message3, Example_Message4 메세지는 각각 0x101, 0x102, 0x103, 0x104 의 CAN ID 를 가지는 Message 이며 
+                      해당 메세지 모두 'ExampleMsg_t'와 같은 Type을 사용하며 모두 같은 Signal 구조의 Message를 정의하고 있다.
+
+                - 'Endian'은 기본적으로 Little Endian(intel)으로 고정하며 별도의 언급(Big Endian)이 있을경우 오류사항 및 사용자 점검 필요사항에 기록한다.
+                
+                - 'signals' 구조체 내의 '<Data Type>'은 해당 시그널의 값의 2진 데이터 표현 형태에 따른 정의를 설명한다.
+                  'Signed' 형태의 경우는 'int64_t' 'Unsigned' 형태의 경우는 'uint64_t'로 정의 된다.
+
+                - `<Physical Data Type> <Signal Name>;` 의 '<Physical Data Type>'은 dbc 정보에서 해당 시그널의 <Legnth>, <Signed>, <Factor>, <Offset> 조합에 의한 표현되는 값의 형태 및 <Min>, <Max> 값에 의해 결정된다.
+                  즉 <Factor>값이 1과 0 사이의 값이면, 값이 실수값 표현 됨으로 'float' 또는 'double'로 정의된다.
+                  정수 값으로 표현되는 경우 <Factor>, <Legnth>, <Signed>, <Offset> 조합에 의해 표현 가능한 <Min> 값이 0 미만 인 경우는 int, 0 이상 인경우는 unsigned int 로 정의 된다.
+                  '<Legnth>'(2진 데이터 비트 길이)에 따라 자료형 크기결정가 된다. 즉 <Legnth>보다 긴 비트 길이의 자료형으로 정의.
+
+                - `void <Type alias>_ToCAN(<Type alias>_t * msg);` 은 해당 Type 메세지 내의 Physical Data Type Signal 값(실제 사용값)으로 부터 raw 갑 즉, 2 데이터 값(CAN Data Frame의 Data field값 )을 변환하여 입력하는 함수.
+
+                - `void <Type alias>_FromCAN(<Type alias>_t * msg);` 은 해당 Type 메세지 내의 raw 값 즉, 2 데이터 값(CAN Data Frame의 Data field 값)으로 부터 Physical Data Type Signal 값(실제 사용값)을 변환하여 입력하는 함수.
+
+                - `void <Type alias>_ToCAN(<Type alias>_t * msg);` 와 `void <Type alias>_FromCAN(<Type alias>_t * msg);` 함수 정의 로 부터 <Factor>, <Offset>, <Min>, <Max>의 정확한 값을 알 수 있다.
+                    해당 함수가 없는 경우, <Min>,<Max> 는 확인가능 한 정보로 표현 가능한 최소, 최대 값으로 정의한다.
+
+
+
+        *.dbc file(이하 'dbc file')의 기본구조 :
+
+            ```
+            VERSION "<VersionIdentifier>"
+
+            NS_:
+                BS_
+                CM_
+                ...
+
+            BS_: <Speed>
+
+            BU_: <Nodes>
+
+            VAL_TABLE_ <ValueTableName> <ValueTableDefinition>;
+            VAL_TABLE_ <ValueTableName> <ValueTableDefinition>;
+
+            ...
+
+            VAL_TABLE_ <ValueTableName> <ValueTableDefinition>;
+
+            BO_ <CAN ID> <Message Name>: <Message Length> <Transmit Node>
+             SG_ <Signal Name> : <Start bit>|<Legnth>@<Endian><Signed> (<Factor>,<Offset>) [<Min>|<Max>] "<Unit>" <Receive Node>
+             SG_ <Signal Name> : <Start bit>|<Legnth>@<Endian><Signed> (<Factor>,<Offset>) [<Min>|<Max>] "<Unit>" <Receive Node>
+             ...
+
+             SG_ <Signal Name> : <Start bit>|<Legnth>@<Endian><Signed> (<Factor>,<Offset>) [<Min>|<Max>] "<Unit>" <Receive Node>
+
+            BO_ <CAN ID> <Message Name>: <Message Length> <Transmit Node>
+             SG_ <Signal Name> : <Start bit>|<Legnth>@<Endian><Signed> (<Factor>,<Offset>) [<Min>|<Max>] "<Unit>" <Receive Node>
+             SG_ <Signal Name> : <Start bit>|<Legnth>@<Endian><Signed> (<Factor>,<Offset>) [<Min>|<Max>] "<Unit>" <Receive Node>
+             ...
+
+             SG_ <Signal Name> : <Start bit>|<Legnth>@<Endian><Signed> (<Factor>,<Offset>) [<Min>|<Max>] "<Unit>" <Receive Node>
+             
+            ...
+
+            BO_ <CAN ID> <Message Name>: <Message Length> <Transmit Node>
+             SG_ <Signal Name> : <Start bit>|<Legnth>@<Endian><Signed> (<Factor>,<Offset>) [<Min>|<Max>] "<Unit>" <Receive Node>
+             SG_ <Signal Name> : <Start bit>|<Legnth>@<Endian><Signed> (<Factor>,<Offset>) [<Min>|<Max>] "<Unit>" <Receive Node>
+             ...
+
+             SG_ <Signal Name> : <Start bit>|<Legnth>@<Endian><Signed> (<Factor>,<Offset>) [<Min>|<Max>] "<Unit>" <Receive Node>
+
+            VAL_ <CAN ID> <Signal Name> <ValueTableName|ValueTableDefinition>;
+            VAL_ <CAN ID> <Signal Name> <ValueTableName|ValueTableDefinition>;
+
+            ...
+
+            VAL_ <CAN ID> <Signal Name> <ValueTableName|ValueTableDefinition>;
+            ```
+
+
+            
+            부분 설명 :
+
+                - `BO_ <CAN ID> <Message Name>: <DLC> <Transmit Node>` 은 Identifier 값에 대한 Message 정의를 설명한다.
+                  <CAN ID>      : Identifier의 CAN Message ID. dbc file은 10진수 표기 한다.
+                  <Message Name>    : Identifier의 CAN Message Name.
+                  <Message Length>  : Identifier의 Message Data 길이(Byte). (DLC - Data Length Code 로 표기함.)
+                  <Transmit Node>   : 해당 Message 송신 Node를 정의 하며, 특정 이름의 Node로 정의 되지 않거나 알수 없는경우 'Vector__XXX' 로 정의.
+
+                - `SG_ <Signal Name> : <Start bit>|<Legnth>@<Endian><Signed> (<Factor>,<Offset>) [<Min>|<Max>] "<Unit>" <Receive Node>`은 해당 Message의 Data field의 2진 데이터에 대한 Signal 정의를 설명한다.
+                  <Signal Name>  : 해당 범위의 Signal Name을 정의.
+
+                  <Start bit>    : 2진 데이터 범위의 'Start bit'를 정의.
+                  <Legnth>       : 2진 데이터의 'Legnth'를 정의.
+                  <Endian>       : 2진 데이터의 'Endian' 방식을 정의. 1 = Little Endian(intel), 0 = Big Endian(Motorola)로 정의 되며 Little Endian(intel)을 기본값으로 한다. 
+                  <Signed>       : 2진 데이터의 Signed 표현 여부 정의. - : Signed, + : Unsigned 
+                  <Factor>       : 해당 Signal의 증감 비례(비율) 값. raw 값인 2진 데이터 값 (정수 값) 1에 대한 증감 비율 (환산 비율). 1 을 기본값으로 한다.
+                  <Offset>       : 2진 데이터 환산 값의 Physical Data(실제 값)에 대한 Offset 정도. 0을 기본 값으로 한다.
+                  <Min>          : 해당 Signal의 최소 값. 
+                  <Max>          : 해당 Signal의 최대 값.
+                  <Unit>         : 해당 Signal의 Unit. 알수 없는경우 공백
+                  <Receive Node> : 해당 Signal을 수신하는 Node를 정의하며, 공백으로 구분된 노드 목록을 작성한다. 특정 이름의 Node로 정의 되지 않거나 알수 없는경우 'Vector__XXX' 로 정의.
+                  
+                - `SG_ <Signal Name> [M|m<MultiplexerIdentifier>] : <Start bit>|<Legnth>@<Endian><Signed> (<Factor>,<Offset>) [<Min>|<Max>] "<Unit>" <Receive Node>` dbc의 Signal 정의 Format.
+                  [M|m<MultiplexerIdentifier>] : M 또는 m<MultiplexerIdentifier> 로 입력
+                  M - 해당 Signal은 MultiplexerIdentifier를 포함한다는 의미.
+                  <MultiplexerIdentifier> - Multiplexer 플렉서 Signal 값이 이 값과 같을때 해당 Signal 정의를 사용.
+
+                    * 현재 이프로젝트에서 Multiplexer 기능을 사용하지 않는 것으로 확인 되고 있음.
+
+                - `VAL_TABLE_ <ValueTableName> <ValueTableDefinition>;`은 값 맵핑 테이블을 'ValueTableName'의 해당 명칭으로 사전 정의를 의미한다. (Enum 사전 정의.)
+                  <ValueTableName> : 해당 값 맵핑 테이블의 명칭을 정의.
+                  <ValueTableDefinition> : 값에 따른 맵핑 테이블을 정의.
+
+                - `VAL_ <CAN ID> <SignalsName> <ValueTableName|ValueTableDefinition>;` : 해당 Signal의 값에 사용할 맵핑 테이블의 정의를 설명한다. (해당 시그널에 사용할 Enum 정의.)
+                  <ValueTableName|ValueTableDefinition> : ValueTableName 또는 ValueTableDefinition 입력
+                  ValueTableName - 사전에 정의된 값 매핑 테이블을 사용하는 경우, 해당 매핑 테이블의 'ValueTableName'
+                  ValueTableDefinition  - 해당 Signal에 사용할 값에 따른 맵핑 테이블을 정의.
+
+            추가 정보는 DBC_Specification.md 와 DBC_template.dbc 를 참고 한다.
+
+작업 지시 상세 설명 :
+
+```
+...
+// message ID <CAN ID> <Message Name>
+// message ID <CAN ID> <Message Name>
+typedef struct{
+
+    union
+    {
+        uint8_t buf[<DLC>];
+
+        struct
+        {
+            <Data Type> <Signal Name> : <Length>;
+            <Data Type> <Signal Name> : <Length>;
+
+            ...
+
+            <Data Type> <Signal Name> : <Length>;
+
+        } signals;
+
+    } raw;
+
+    <Physical Data Type> <Signal Name>;
+    <Physical Data Type> <Signal Name>;
+    
+    ...
+
+    <Physical Data Type> <Signal Name>;
+
+} <Type alias>_t;
+
+void <Type alias>_ToCAN(<Type alias>_t * msg)
+void <Type alias>_FromCAN(<Type alias>_t * msg);
+
+
+...
+
+
+// message ID <CAN ID> <Message Name>
+typedef struct{
+
+    union
+    {
+        uint8_t buf[<DLC>];
+
+        struct
+        {
+            <Data Type> <Signal Name> : <Length>;
+            <Data Type> <Signal Name> : <Length>;
+
+            ...
+
+            <Data Type> <Signal Name> : <Length>;
+
+        } signals;
+
+    } raw;
+
+    <Physical Data Type> <Signal Name>;
+    <Physical Data Type> <Signal Name>;
+    
+    ...
+
+    <Physical Data Type> <Signal Name>;
+
+} <Type alias>_t;
+
+void <Type alias>_ToCAN(<Type alias>_t * msg)
+{
+    assert(msg-><Signal Name> <= <Max>);
+    assert(msg-><Signal Name> >= <Max>);
+    msg->raw.signals.<Signal Name> = round(( msg-><Signal Name> - <Offset>) / <Factor> );
+
+    assert(msg-><Signal Name> <= <Max>);
+    assert(msg-><Signal Name> >= <Max>);
+    msg->raw.signals.<Signal Name> = round(( msg-><Signal Name> - <Offset>) / <Factor> );
+    
+    ...
+
+    assert(msg-><Signal Name> <= <Max>);
+    assert(msg-><Signal Name> >= <Max>);
+    msg->raw.signals.<Signal Name> = round(( msg-><Signal Name> - <Offset>) / <Factor> );
+
+}
+void <Type alias>_FromCAN(<Type alias>_t * msg)
+{
+    msg-><Signal Name> = raw.signals.<Signal Name> * <Factor> + <Offset>;
+    msg-><Signal Name> = raw.signals.<Signal Name> * <Factor> + <Offset>;
+
+    ...
+
+    msg-><Signal Name> = raw.signals.<Signal Name> * <Factor> + <Offset>;
+}
+...
+
+```
+
+1-1 *.dbc 파일 별 CAN ID 에 대한 Message Name 정의.
+
+    수행 작업 :
+
+    Hear file로 부터 'CAN ID'에 대한 'Message Name'를 모두 정의한다.
+
+    e.g.
+        ```
+        ...
+        // message ID 0x101 Example_Message1
+        // message ID 0x102 Example_Message2
+        typedef struct{
+            union
+            {
+                uint8_t buf[8];
+
+                struct
+                {
+                    ...
+                } signals;
+
+            } raw;
+            ...
+        } ExampleMsg_t;
+
+        // message ID 0x103 Sample_Message1
+        // message ID 0x104 Sample_Message2
+        typedef struct{
+            union
+            {
+                uint8_t buf[8];
+
+                struct
+                {
+                    ...
+                } signals;
+
+            } raw;
+            ...
+        } SampleMsg_t;
+        ...
+        ```
+        와 같은 내용의 Header File 로 `BO_ <CAN ID> <Message Name>: <Message Length> <SendingNode>` 와 같이 dbc파일 Fomat의 Message를 정의 하는 예시의 경우,
+        해당 Header File로 부터 4개의 CAN ID 정보와 각 ID 정보에한 Message Name,  Message Length 정보를 확인 할 수 있다.
+        하지만 'SendingNode'에 대한 정보는 확인이 안된다. 이러한 경우 해당 Message에 대해 '사용자 점검 필요사항'을 기록하고 해당 사항의 정의 및 지침인 '특정 이름의 Node로 정의 되지 않거나 알수 없는경우 'Vector__XXX' 로 정의.'를 따른다.
+        따라서, 다음과 같이 dbc file에 각 CAN ID 에 대한 Message 정의를 작성 한다.
+        
+        ```
+        BO_ 257 Example_Message1: 8 Vector__XXX
+        ...
+
+        BO_ 258 Example_Message2: 8 Vector__XXX
+        ...
+
+        BO_ 259 Sample_Message1: 8 Vector__XXX
+        ...
+
+        BO_ 260 Sample_Message2: 8 Vector__XXX
+        ...
+        ```
+
+1-2 각 Message에 대한 Siganald의 Name, Signed type, start bit, length, factor, offset, min, max 정의.
+    
+    수행작업 :
+
+    Header file 로 부터 각 Message 별 포함 Signal을 모두 정의 한다.
+
+    e.g.
+        ```
+        ...
+        // message ID 0x101 Example_Message1
+        // message ID 0x102 Example_Message2
+        typedef struct{
+            union
+            {
+                uint8_t buf[8];
+
+                struct
+                {
+                    uint64_t ExampleSig0 : 12;
+                    uint64_t reserved : 4;
+                    int64_t ExampleSig1 : 11;
+                    uint64_t reserved1 : 37;
+                    
+                } signals;
+
+                double ExampleSig0;
+                double ExampleSig1;
+
+            } raw;
+            ...
+        } ExampleMsg_t;
+
+        void ExampleMsg_ToCAN(ExampleMsg_t * msg)
+        {
+            assert(msg->ExampleSig0 <= 20.48);
+            assert(msg->ExampleSig0 >= -20.47);
+            msg->raw.signals.ExampleSig0 = round(( msg->ExampleSig0 + 20.47) / 0.01 );
+
+            assert(msg->ExampleSig1 <= 102.3);
+            assert(msg->ExampleSig1 >= -102.4);
+            msg->raw.signals.ExampleSig1 = round( msg->ExampleSig1  / 0.1 );
+
+        }
+        void ExampleMsg_FromCAN(ExampleMsg_t * msg);
+        {
+            msg->ExampleSig0 = raw.signals.ExampleSig0 * 0.01 - 20.47;
+            msg->ExampleSig1 = raw.signals.ExampleSig1 * 0.1;
+        }
+
+        // message ID 0x103 Sample_Message1
+        // message ID 0x104 Sample_Message2
+        typedef struct{
+            union
+            {
+                uint8_t buf[8];
+
+                struct
+                {
+                    uint64_t SampleSig0 : 8;
+                    uint64_t reserved : 8;
+                    int64_t SampleSig1 : 16;
+                    uint64_t reserved1 : 32;
+
+                } signals;
+
+            } raw;
+            
+        } SampleMsg_t;
+        ```
+        위와 같은 예시에 대해서 `SG_ <Signal Name> : <Start bit>|<Legnth>@<Endian><Signed> (<Factor>,<Offset>) [<Min>|<Max>] "<Unit>" <Receive Node>` 와 같은
+        dbc파일 Signal 정의 Format으로 작성하는 경우 다음과 같이 작성할 수 있다.
+
+        'Example_Message1(0x101)', 'Example_Message2(0x102)' 메세지는 같은 'ExampleMsg_t' Type의 Signal 구조를 포함하고 있다.
+        'ExampleMsg_t' 정의를 통해 해당 Message들이 포함 하고 있는 Signal의 'Signal Name', 'Start bit', 'Length', 'Signed'를 확인 할 수 있으며 'Endian'은 'Little Endian(intel)'으로 정의한다.
+        'ExampleMsg_ToCAN', 'ExampleMsg_FromCAN' 함수정의를 통해 'ExampleSig0', 'ExampleSig1'의 'Factor', 'Offset', 'Min', 'Max' 를 확인 할 수 있다.
+        'Unit' 와 'Receive Node'는 별도의 언급이 없으므로 지침에 따라 '" "', 'Vector__XXX'로 정의.
+
+        'Sample_Message1(0x103)', 'Sample_Message2(0x104)' 메세지는 같은 'SampleMsg_t' Type의 Signal 구조를 포함하고 있다.
+        'SampleMsg_t' 정의를 통해 해당 Message들이 포함 하고 있는 Signal의 'Signal Name', 'Start bit', 'Length', 'Signed'를 확인 할 수 있으며 'Endian'은 'Little Endian(intel)'으로 정의한다.
+        'SampleMsg_ToCAN', 'SampleMsg_FromCAN' 함수정의 및 내용이 확인 되지 않아 'SampleSig0', 'SampleSig1'의 'Factor', 'Offset', 'Min', 'Max'의 정확한 값을 확인 할 수 없다.
+        이 경우'Factor' = 1, 'Offset' = 0 으로 정의 하고 해당 조건에서 표현 가능한 각 Signal의 최소, 최대 값을 'Min', 'Max' 값으로 정의 한다.
+        'Unit' 와 'Receive Node'는 별도의 언급이 없으므로 지침에 따라 '" "', 'Vector__XXX'로 정의.
+
+        따라서 다음과 같이 dbc file에 각 Message에 대한 Signal 정의를 작성 한다.
+
+        ```
+        BO_ 257 Example_Message1: 8 Vector__XXX
+         SG_ ExampleSig0 : 0|12@1+ (0.01,-20.47) [-20.47|20.48] " " Vector__XXX
+         SG_ ExampleSig1 : 16|11@1- (0.1,0) [-102.4|102.3] " " Vector__XXX
+         
+
+        BO_ 258 Example_Message2: 8 Vector__XXX
+         SG_ ExampleSig0 : 0|12@1+ (0.01,-20.47) [-20.47|20.48] " " Vector__XXX
+         SG_ ExampleSig1 : 16|11@1- (0.1,0) [-102.4|102.3] " " Vector__XXX
+
+        BO_ 259 Sample_Message1: 8 Vector__XXX
+         SG_ SampleSig0 : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+         SG_ SampleSig1 : 16|16@1- (1,0) [-32768|32767] " " Vector__XXX
+
+        BO_ 260 Sample_Message2: 8 Vector__XXX
+         SG_ SampleSig0 : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+         SG_ SampleSig1 : 16|16@1- (1,0) [-32768|32767] " " Vector__XXX
+        ```
