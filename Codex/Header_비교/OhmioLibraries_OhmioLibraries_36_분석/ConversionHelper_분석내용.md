@@ -6,15 +6,16 @@
 - 공백 정규화 후 동일 여부: 동일
 
 ## 요약
-| 항목 | OhmioLibraries | OhmioLibraries_36 |
-| --- | --- | --- |
-| Line | 92 | 92 |
-| SHA256 | 7340b1a5939b | 7340b1a5939b |
-| Struct | 0 | 0 |
-| Enum | 0 | 0 |
-| CAN_ID | 0 | 0 |
-| Function | 6 | 6 |
-| Unified diff | -0 | +0 |
+| 항목           | OhmioLibraries | OhmioLibraries_36 |
+| ------------ | -------------- | ----------------- |
+| Line         | 92             | 92                |
+| SHA256       | 7340b1a5939b   | 7340b1a5939b      |
+| Struct       | 0              | 0                 |
+| Enum         | 0              | 0                 |
+| CAN_ID       | 0              | 0                 |
+| Function     | 6              | 6                 |
+| Unified diff | -0             | +0                |
+
 
 Diff hunk 없음.
 

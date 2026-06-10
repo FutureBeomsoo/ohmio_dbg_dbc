@@ -5,6 +5,7 @@ import difflib
 import hashlib
 import itertools
 import re
+import textwrap
 from datetime import datetime
 from pathlib import Path
 
@@ -419,13 +420,34 @@ def list_diff(a_items, b_items):
 def table(headers: list[str], rows: list[list[str]], empty: str = "없음") -> list[str]:
     if not rows:
         return [empty]
+    cells = [[md_escape(cell) for cell in headers]]
+    cells.extend([[md_escape(cell) for cell in row] for row in rows])
+    widths = []
+    for col in range(len(headers)):
+        widths.append(max(3, max(len(row[col]) if col < len(row) else 0 for row in cells)))
+
+    def padded(row: list[str]) -> str:
+        values = []
+        for col, width in enumerate(widths):
+            value = row[col] if col < len(row) else ""
+            values.append(value.ljust(width))
+        return "| " + " | ".join(values) + " |"
+
     out = [
-        "| " + " | ".join(headers) + " |",
-        "| " + " | ".join(["---"] * len(headers)) + " |",
+        padded(cells[0]),
+        "| " + " | ".join("-" * width for width in widths) + " |",
     ]
-    for row in rows:
-        out.append("| " + " | ".join(md_escape(cell) for cell in row) + " |")
+    for row in cells[1:]:
+        out.append(padded(row))
+    out.append("")
     return out
+
+
+def wrapped_bullet(label: str, text: str, indent: int = 2, width: int = 120) -> list[str]:
+    prefix = " " * indent + f"- {label}: "
+    continuation = " " * len(prefix)
+    wrapped = textwrap.wrap(text or "-", width=width, initial_indent=prefix, subsequent_indent=continuation)
+    return wrapped or [prefix + "-"]
 
 
 def compare_fields(a: dict, b: dict, label_a: str, label_b: str) -> tuple[list[str], dict]:
@@ -674,7 +696,10 @@ def compare_can_ids(a_data: dict, b_data: dict, label_a: str, label_b: str) -> t
         checks.extend(f"{row[0]} symbolic name 불일치" for row in value_conflicts)
     if changed_comment:
         lines.append("동일 CAN_ID 이름/값의 주석 정의 변경:")
-        lines.extend(table(["Name", "Value", label_a, label_b], changed_comment))
+        for name, value, comment_a, comment_b in changed_comment:
+            lines.append(f"#### {name} ({value})")
+            lines.extend(wrapped_bullet(label_a, comment_a))
+            lines.extend(wrapped_bullet(label_b, comment_b))
     if not (only_a or only_b or changed_value or changed_comment or value_conflicts):
         lines.append("CAN_ID enum 항목 차이는 없습니다.")
     return lines, stats, checks
@@ -996,17 +1021,29 @@ def write_static_docs(all_stats: list[dict], all_checks: list[dict], parse_warni
     error_lines.append("참고: C 전처리기와 컴파일러를 실행하지 않고 header 텍스트를 구조적으로 파싱했다.")
     (OUT / "Header_비교_오류사항.md").write_text("\n".join(error_lines).rstrip() + "\n", encoding="utf-8")
 
-    log_lines = [
-        "# Header_비교 작업기록",
+    log_path = OUT / "Header_비교_작업기록.md"
+    log_entry = [
         "",
-        f"- 생성 시각: {datetime.now().astimezone().isoformat(timespec='seconds')}",
-        "- `Codex/can_headerfile_commnad.txt`의 1번 작업 지시를 확인했다.",
-        "- 원본 4개 폴더에서 대상 8개 header 파일 존재 여부를 확인했다.",
-        "- 구조 비교 스크립트 `Codex/Header_비교/analyze_can_headers.py`를 작성했다.",
+        f"## {datetime.now().astimezone().isoformat(timespec='seconds')} 분석 리포트 재생성",
+        "- 구조 비교 스크립트 `Codex/Header_비교/analyze_can_headers.py`를 실행했다.",
         "- 6개 폴더 쌍 x 8개 파일 = 48개 분석 markdown을 생성했다.",
-        "- 집계 문서 `Header_비교_작업내용.md`, `Header_비교_오류사항.md`, `Header_비교_점검_필요사항.md`를 생성했다.",
+        "- 집계 문서 `Header_비교_작업내용.md`, `Header_비교_오류사항.md`, `Header_비교_점검_필요사항.md`를 갱신했다.",
     ]
-    (OUT / "Header_비교_작업기록.md").write_text("\n".join(log_lines).rstrip() + "\n", encoding="utf-8")
+    if log_path.exists():
+        with log_path.open("a", encoding="utf-8") as fp:
+            fp.write("\n".join(log_entry).rstrip() + "\n")
+    else:
+        initial_log = [
+            "# Header_비교 작업기록",
+            "",
+            f"## {datetime.now().astimezone().isoformat(timespec='seconds')} 최초 분석",
+            "- `Codex/can_headerfile_commnad.txt`의 1번 작업 지시를 확인했다.",
+            "- 원본 4개 폴더에서 대상 8개 header 파일 존재 여부를 확인했다.",
+            "- 구조 비교 스크립트 `Codex/Header_비교/analyze_can_headers.py`를 작성했다.",
+            "- 6개 폴더 쌍 x 8개 파일 = 48개 분석 markdown을 생성했다.",
+            "- 집계 문서 `Header_비교_작업내용.md`, `Header_비교_오류사항.md`, `Header_비교_점검_필요사항.md`를 생성했다.",
+        ]
+        log_path.write_text("\n".join(initial_log).rstrip() + "\n", encoding="utf-8")
 
 
 def main() -> int:

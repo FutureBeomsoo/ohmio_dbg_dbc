@@ -6,15 +6,16 @@
 - 공백 정규화 후 동일 여부: 다름
 
 ## 요약
-| 항목 | OhmioLibraries | Ohmio_lib_include |
-| --- | --- | --- |
-| Line | 3661 | 3628 |
-| SHA256 | 1f61bb3507a1 | 2251ffadbd73 |
-| Struct | 146 | 145 |
-| Enum | 28 | 28 |
-| CAN_ID | 0 | 0 |
-| Function | 130 | 130 |
-| Unified diff | -43 | +10 |
+| 항목           | OhmioLibraries | Ohmio_lib_include |
+| ------------ | -------------- | ----------------- |
+| Line         | 3661           | 3628              |
+| SHA256       | 1f61bb3507a1   | 2251ffadbd73      |
+| Struct       | 146            | 145               |
+| Enum         | 28             | 28                |
+| CAN_ID       | 0              | 0                 |
+| Function     | 130            | 130               |
+| Unified diff | -43            | +10               |
+
 
 Diff hunk 위치:
 - `@@ -583,24 +583,6 @@`
@@ -38,132 +39,156 @@ CAN_ID enum 항목이 없습니다.
 ### 일반 enum 비교
 #### DrvExtErrorCode
 OhmioLibraries에만 있는 entry:
-| Entry | Value |
-| --- | --- |
-| Drvext_EPB1_Comms | 6 |
-| Drvext_EPB2_Comms | 7 |
+| Entry             | Value |
+| ----------------- | ----- |
+| Drvext_EPB1_Comms | 6     |
+| Drvext_EPB2_Comms | 7     |
+
 동일 entry 이름의 값 변경:
-| Entry | OhmioLibraries | Ohmio_lib_include |
-| --- | --- | --- |
-| Drvext_NumErrorCodes | 8 | 6 |
+| Entry                | OhmioLibraries | Ohmio_lib_include |
+| -------------------- | -------------- | ----------------- |
+| Drvext_NumErrorCodes | 8              | 6                 |
+
 #### FusErrorCode
 OhmioLibraries에만 있는 entry:
-| Entry | Value |
-| --- | --- |
-| fus_Reserved | 0x16 |
+| Entry        | Value |
+| ------------ | ----- |
+| fus_Reserved | 0x16  |
+
 Ohmio_lib_include에만 있는 entry:
-| Entry | Value |
-| --- | --- |
-| fus_conflicting_inputs | 0x16 |
+| Entry                  | Value |
+| ---------------------- | ----- |
+| fus_conflicting_inputs | 0x16  |
+
 #### ObstaclePcWarningErrorCode
 OhmioLibraries에만 있는 entry:
-| Entry | Value |
-| --- | --- |
-| Obs_Keyframe_Loader_Database | 0x10 |
-| Obs_Keyframe_Loader_Version | 0x11 |
-| Obs_Keyframe_Saver | 0xE |
+| Entry                        | Value |
+| ---------------------------- | ----- |
+| Obs_Keyframe_Loader_Database | 0x10  |
+| Obs_Keyframe_Loader_Version  | 0x11  |
+| Obs_Keyframe_Saver           | 0xE   |
+
 Ohmio_lib_include에만 있는 entry:
-| Entry | Value |
-| --- | --- |
-| Obs_Keyframe_Database | 0xE |
+| Entry                 | Value |
+| --------------------- | ----- |
+| Obs_Keyframe_Database | 0xE   |
+
 동일 entry 이름의 값 변경:
-| Entry | OhmioLibraries | Ohmio_lib_include |
-| --- | --- | --- |
-| Obs_NumWarningCodes | 0x12 | 0x10 |
+| Entry               | OhmioLibraries | Ohmio_lib_include |
+| ------------------- | -------------- | ----------------- |
+| Obs_NumWarningCodes | 0x12           | 0x10              |
+
 
 ### Struct/Message 비교
 OhmioLibraries에만 있는 struct:
-| Struct | message ID | bit 수 |
-| --- | --- | --- |
-| ConnectWp_t | 0x630 ConnectWp | 49 |
+| Struct      | message ID      | bit 수 |
+| ----------- | --------------- | ----- |
+| ConnectWp_t | 0x630 ConnectWp | 49    |
+
 변경된 공통 struct: 6개
 #### ErrorDriveExt_t
 - Signal 총 bit 수 변경: OhmioLibraries=8, Ohmio_lib_include=6
 OhmioLibraries에만 있는 Signal:
-| Signal | 정의 | Ohmio_lib_include 겹침 영역 |
-| --- | --- | --- |
-| DrvextEPB1CommsError | bit6 uint64_t DrvextEPB1CommsError:1 | - |
-| DrvextEPB2CommsError | bit7 uint64_t DrvextEPB2CommsError:1 | - |
+| Signal               | 정의                                   | Ohmio_lib_include 겹침 영역 |
+| -------------------- | ------------------------------------ | ----------------------- |
+| DrvextEPB1CommsError | bit6 uint64_t DrvextEPB1CommsError:1 | -                       |
+| DrvextEPB2CommsError | bit7 uint64_t DrvextEPB2CommsError:1 | -                       |
+
 #### FusError_t
 OhmioLibraries에만 있는 Signal:
-| Signal | 정의 | Ohmio_lib_include 겹침 영역 |
-| --- | --- | --- |
+| Signal   | 정의                        | Ohmio_lib_include 겹침 영역                 |
+| -------- | ------------------------- | --------------------------------------- |
 | reserved | bit22 uint64_t reserved:1 | bit22 uint64_t fus_conflicting_inputs:1 |
+
 Ohmio_lib_include에만 있는 Signal:
-| Signal | 정의 | OhmioLibraries 겹침 영역 |
-| --- | --- | --- |
+| Signal                 | 정의                                      | OhmioLibraries 겹침 영역      |
+| ---------------------- | --------------------------------------- | ------------------------- |
 | fus_conflicting_inputs | bit22 uint64_t fus_conflicting_inputs:1 | bit22 uint64_t reserved:1 |
+
 Reserved 대체 후보:
-| 범위 | OhmioLibraries | Ohmio_lib_include | 판정 |
-| --- | --- | --- | --- |
+| 범위    | OhmioLibraries            | Ohmio_lib_include                       | 판정                                      |
+| ----- | ------------------------- | --------------------------------------- | --------------------------------------- |
 | bit22 | bit22 uint64_t reserved:1 | bit22 uint64_t fus_conflicting_inputs:1 | Reserved 대체 후보: OhmioLibraries reserved |
+
 #### FusionFlagsMsg_t
 동일 Signal 이름의 정의 변경:
-| Signal | OhmioLibraries | Ohmio_lib_include | 판정 |
-| --- | --- | --- | --- |
-| reserved | bit22 uint64_t reserved:1 | bits35-39 uint64_t reserved:5 | bit/type/unit 변경 |
+| Signal    | OhmioLibraries                 | Ohmio_lib_include              | 판정               |
+| --------- | ------------------------------ | ------------------------------ | ---------------- |
+| reserved  | bit22 uint64_t reserved:1      | bits35-39 uint64_t reserved:5  | bit/type/unit 변경 |
 | reserved1 | bits37-39 uint64_t reserved1:3 | bits44-45 uint64_t reserved1:2 | bit/type/unit 변경 |
-| reserved2 | bits44-45 uint64_t reserved2:2 | bit51 uint64_t reserved2:1 | bit/type/unit 변경 |
-| reserved3 | bit51 uint64_t reserved3:1 | bits53-54 uint64_t reserved3:2 | bit/type/unit 변경 |
+| reserved2 | bits44-45 uint64_t reserved2:2 | bit51 uint64_t reserved2:1     | bit/type/unit 변경 |
+| reserved3 | bit51 uint64_t reserved3:1     | bits53-54 uint64_t reserved3:2 | bit/type/unit 변경 |
+
 OhmioLibraries에만 있는 Signal:
-| Signal | 정의 | Ohmio_lib_include 겹침 영역 |
-| --- | --- | --- |
-| reserved4 | bits53-54 uint64_t reserved4:2 | bits53-54 uint64_t reserved3:2 |
-| w_large_gnss_delay | bit35 uint64_t w_large_gnss_delay:1 | bits35-39 uint64_t reserved:5 |
-| w_large_lidar_delay | bit36 uint64_t w_large_lidar_delay:1 | bits35-39 uint64_t reserved:5 |
-| w_no_engine_state | bit34 uint64_t w_no_engine_state:1 | bit34 uint64_t no_engine_state:1 |
+| Signal              | 정의                                   | Ohmio_lib_include 겹침 영역          |
+| ------------------- | ------------------------------------ | -------------------------------- |
+| reserved4           | bits53-54 uint64_t reserved4:2       | bits53-54 uint64_t reserved3:2   |
+| w_large_gnss_delay  | bit35 uint64_t w_large_gnss_delay:1  | bits35-39 uint64_t reserved:5    |
+| w_large_lidar_delay | bit36 uint64_t w_large_lidar_delay:1 | bits35-39 uint64_t reserved:5    |
+| w_no_engine_state   | bit34 uint64_t w_no_engine_state:1   | bit34 uint64_t no_engine_state:1 |
+
 Ohmio_lib_include에만 있는 Signal:
-| Signal | 정의 | OhmioLibraries 겹침 영역 |
-| --- | --- | --- |
-| conflicting_inputs | bit22 uint64_t conflicting_inputs:1 | bit22 uint64_t reserved:1 |
-| no_engine_state | bit34 uint64_t no_engine_state:1 | bit34 uint64_t w_no_engine_state:1 |
+| Signal             | 정의                                  | OhmioLibraries 겹침 영역               |
+| ------------------ | ----------------------------------- | ---------------------------------- |
+| conflicting_inputs | bit22 uint64_t conflicting_inputs:1 | bit22 uint64_t reserved:1          |
+| no_engine_state    | bit34 uint64_t no_engine_state:1    | bit34 uint64_t w_no_engine_state:1 |
+
 Reserved 대체 후보:
-| 범위 | OhmioLibraries | Ohmio_lib_include | 판정 |
-| --- | --- | --- | --- |
-| bit22 | bit22 uint64_t reserved:1 | bit22 uint64_t conflicting_inputs:1 | Reserved 대체 후보: OhmioLibraries reserved |
-| bit35 | bit35 uint64_t w_large_gnss_delay:1 | bits35-39 uint64_t reserved:5 | Reserved 대체 후보: Ohmio_lib_include reserved |
-| bit36 | bit36 uint64_t w_large_lidar_delay:1 | bits35-39 uint64_t reserved:5 | Reserved 대체 후보: Ohmio_lib_include reserved |
+| 범위    | OhmioLibraries                       | Ohmio_lib_include                   | 판정                                         |
+| ----- | ------------------------------------ | ----------------------------------- | ------------------------------------------ |
+| bit22 | bit22 uint64_t reserved:1            | bit22 uint64_t conflicting_inputs:1 | Reserved 대체 후보: OhmioLibraries reserved    |
+| bit35 | bit35 uint64_t w_large_gnss_delay:1  | bits35-39 uint64_t reserved:5       | Reserved 대체 후보: Ohmio_lib_include reserved |
+| bit36 | bit36 uint64_t w_large_lidar_delay:1 | bits35-39 uint64_t reserved:5       | Reserved 대체 후보: Ohmio_lib_include reserved |
+
 비트 범위 충돌:
-| 겹침 | OhmioLibraries | Ohmio_lib_include | 판정 |
-| --- | --- | --- | --- |
+| 겹침    | OhmioLibraries                     | Ohmio_lib_include                | 판정                             |
+| ----- | ---------------------------------- | -------------------------------- | ------------------------------ |
 | bit34 | bit34 uint64_t w_no_engine_state:1 | bit34 uint64_t no_engine_state:1 | 동일 bit 영역의 non-reserved 정의 불일치 |
+
 #### FusionHeight_t
 - Signal 총 bit 수 변경: OhmioLibraries=64, Ohmio_lib_include=57
 OhmioLibraries에만 있는 Signal:
-| Signal | 정의 | Ohmio_lib_include 겹침 영역 |
-| --- | --- | --- |
-| compute_time | bits57-63 uint64_t compute_time:7 | - |
+| Signal       | 정의                                | Ohmio_lib_include 겹침 영역 |
+| ------------ | --------------------------------- | ----------------------- |
+| compute_time | bits57-63 uint64_t compute_time:7 | -                       |
+
 물리/편의 member 차이:
-| member | OhmioLibraries | Ohmio_lib_include |
-| --- | --- | --- |
-| compute_time | double compute_time | - |
+| member       | OhmioLibraries      | Ohmio_lib_include |
+| ------------ | ------------------- | ----------------- |
+| compute_time | double compute_time | -                 |
+
 #### ObstaclePcWarning_t
 - Signal 총 bit 수 변경: OhmioLibraries=18, Ohmio_lib_include=16
 OhmioLibraries에만 있는 Signal:
-| Signal | 정의 | Ohmio_lib_include 겹침 영역 |
-| --- | --- | --- |
-| ObsKeyframeLoaderDatabaseError | bit16 uint64_t ObsKeyframeLoaderDatabaseError:1 | - |
-| ObsKeyframeLoaderVersionError | bit17 uint64_t ObsKeyframeLoaderVersionError:1 | - |
-| ObsKeyframeSaverError | bit14 uint64_t ObsKeyframeSaverError:1 | bit14 uint64_t ObsKeyframeDatabaseError:1 |
+| Signal                         | 정의                                              | Ohmio_lib_include 겹침 영역                   |
+| ------------------------------ | ----------------------------------------------- | ----------------------------------------- |
+| ObsKeyframeLoaderDatabaseError | bit16 uint64_t ObsKeyframeLoaderDatabaseError:1 | -                                         |
+| ObsKeyframeLoaderVersionError  | bit17 uint64_t ObsKeyframeLoaderVersionError:1  | -                                         |
+| ObsKeyframeSaverError          | bit14 uint64_t ObsKeyframeSaverError:1          | bit14 uint64_t ObsKeyframeDatabaseError:1 |
+
 Ohmio_lib_include에만 있는 Signal:
-| Signal | 정의 | OhmioLibraries 겹침 영역 |
-| --- | --- | --- |
+| Signal                   | 정의                                        | OhmioLibraries 겹침 영역                   |
+| ------------------------ | ----------------------------------------- | -------------------------------------- |
 | ObsKeyframeDatabaseError | bit14 uint64_t ObsKeyframeDatabaseError:1 | bit14 uint64_t ObsKeyframeSaverError:1 |
+
 비트 범위 충돌:
-| 겹침 | OhmioLibraries | Ohmio_lib_include | 판정 |
-| --- | --- | --- | --- |
+| 겹침    | OhmioLibraries                         | Ohmio_lib_include                         | 판정                             |
+| ----- | -------------------------------------- | ----------------------------------------- | ------------------------------ |
 | bit14 | bit14 uint64_t ObsKeyframeSaverError:1 | bit14 uint64_t ObsKeyframeDatabaseError:1 | 동일 bit 영역의 non-reserved 정의 불일치 |
+
 #### ObstacleTrackDistanceMsg_t
 - Signal 총 bit 수 변경: OhmioLibraries=64, Ohmio_lib_include=44
 OhmioLibraries에만 있는 Signal:
-| Signal | 정의 | Ohmio_lib_include 겹침 영역 |
-| --- | --- | --- |
-| BackDistance | bits59-63 uint64_t BackDistance:5, // mm | - |
-| reserved | bits44-58 uint64_t reserved:15 | - |
+| Signal       | 정의                                       | Ohmio_lib_include 겹침 영역 |
+| ------------ | ---------------------------------------- | ----------------------- |
+| BackDistance | bits59-63 uint64_t BackDistance:5, // mm | -                       |
+| reserved     | bits44-58 uint64_t reserved:15           | -                       |
+
 물리/편의 member 차이:
-| member | OhmioLibraries | Ohmio_lib_include |
-| --- | --- | --- |
-| BackDistance | double BackDistance | - |
+| member       | OhmioLibraries      | Ohmio_lib_include |
+| ------------ | ------------------- | ----------------- |
+| BackDistance | double BackDistance | -                 |
+
 
 ### 함수 선언/정의 비교
 함수 선언/정의 차이는 없습니다.
