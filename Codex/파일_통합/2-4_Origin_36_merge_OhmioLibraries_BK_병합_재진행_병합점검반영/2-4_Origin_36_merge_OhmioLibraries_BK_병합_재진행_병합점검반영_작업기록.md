@@ -15,6 +15,11 @@
 | 2026-06-11T21:48:00+0900 | `IMUMag_ToCan()` `status` assert 제외 확정 상태로 주석 정리. |
 | 2026-06-11T21:48:00+0900 | 결과 header 8개 동시 include `g++ -std=c++11 -fsyntax-only` 검증 통과. |
 | 2026-06-11T21:48:00+0900 | 작업내용, 점검 필요사항, 오류사항, 작업기록 문서 작성. |
+| 2026-06-11T22:19:42+0900 | 사용자 지시에 따라 별도 수정 작업 폴더 없이 현재 재진행 폴더 내 추가 작업으로 진행. |
+| 2026-06-11T22:19:42+0900 | 추가 작업계획 `2-4_Origin_36_merge_OhmioLibraries_BK_병합_재진행_병합점검반영_추가작업_SystemReq_ObsoleteComment_예정_작업계획.md` 작성. |
+| 2026-06-11T22:19:42+0900 | `SystemReqMsg` bit 60 `driveDisalowed`, bit 61 `errorCheck`로 수정. |
+| 2026-06-11T22:19:42+0900 | Obsolete 계열 묶음 comment 삭제, 활성 정의 comment를 Obsolete message명으로 변경, `ObsoleteMsg_t` 주석 처리. |
+| 2026-06-11T22:19:42+0900 | 결과 header 8개 동시 include `g++ -std=c++11 -fsyntax-only` 검증 통과. |
 
 ## 산출물
 
@@ -25,4 +30,3 @@
 | 점검 필요사항 | `2-4_Origin_36_merge_OhmioLibraries_BK_병합_재진행_병합점검반영_점검_필요사항.md` |
 | 오류사항 | `2-4_Origin_36_merge_OhmioLibraries_BK_병합_재진행_병합점검반영_오류사항.md` |
 | 작업기록 | `2-4_Origin_36_merge_OhmioLibraries_BK_병합_재진행_병합점검반영_작업기록.md` |
-

@@ -23,3 +23,19 @@
 
 특히 이번 재진행에서 활성 추가된 BK 계열 message의 변환 함수는 원본 BK 로직을 따른 것이므로, 실제 차량/시뮬레이터 CAN frame 기준값으로 추가 검증하는 것이 좋다.
 
+
+## 사용자 의견 반영 결과
+
+| 항목 | 반영 결과 |
+| --- | --- |
+| `SystemReqMsg` bit 60/61 | bit 60 `driveDisalowed`, bit 61 `errorCheck`로 수정 완료. |
+| Obsolete 계열 묶음 comment | `ObsoleteMsg_t` 앞에 있던 Obsolete ID comment 묶음 삭제 완료. |
+| 활성 BK 정의 comment | 각 활성 정의 앞 comment를 사용자 의견의 Obsolete message명으로 변경 완료. |
+| `ObsoleteMsg_t` | 삭제하지 않고 주석 처리 완료. |
+
+## 추가 검증 결과
+
+| 검증 | 결과 |
+| --- | --- |
+| `SystemReqMsg` bitfield 합계 | 64bit 확인 |
+| 8개 header 동시 include 문법 검증 | `g++ -std=c++11 -fsyntax-only` 통과 |

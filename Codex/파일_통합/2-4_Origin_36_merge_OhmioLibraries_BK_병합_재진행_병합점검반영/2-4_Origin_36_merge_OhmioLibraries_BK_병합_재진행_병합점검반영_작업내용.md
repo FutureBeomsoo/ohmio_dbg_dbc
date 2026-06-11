@@ -79,3 +79,15 @@
 | 기존 2-4와 동일 유지 파일 | `additionalDbcCan.h`, `dbc_CAN_peripheral.h`, `dbc_MsgID_main.h`, `dbc_MsgID_peripheral.h`, `dbc_MsgID_security.h`, `Security_CAN.h` |
 | 문법 검증 | `g++ -std=c++11 -fsyntax-only` 통과 |
 
+## 추가 작업 반영
+
+사용자 의견에 따라 현재 재진행 폴더 내에서 추가 작업을 수행했다.
+
+| 항목 | 반영 내용 |
+| --- | --- |
+| 추가 작업계획 | `2-4_Origin_36_merge_OhmioLibraries_BK_병합_재진행_병합점검반영_추가작업_SystemReq_ObsoleteComment_예정_작업계획.md` 작성 |
+| `SystemReqMsg` | `driveDisalowed :2`를 `driveDisalowed :1`, `errorCheck :1`로 수정 |
+| Obsolete 계열 comment | 기존 Obsolete ID 묶음 comment 삭제 |
+| 활성 BK 정의 comment | 활성 정의 앞 message ID comment를 `Obsolete_*` 기준으로 변경 |
+| `ObsoleteMsg_t` | placeholder struct를 주석 처리 |
+| 추가 검증 | 8개 header 동시 include 문법 검증 통과 |

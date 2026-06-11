@@ -461,7 +461,8 @@ typedef struct{
 			uint64_t maxSpeed :16;    //m/s
 			uint64_t brakePressure :8;    //bar
 			uint64_t reserved :20;
-			uint64_t driveDisalowed :2;
+			uint64_t driveDisalowed :1;
+			uint64_t errorCheck :1;
 			uint64_t useLidar :1;
 			uint64_t useUltrasound :1;
 		} signals;
@@ -1747,24 +1748,7 @@ void ExtObsSpeedMsg_ToCan(ExtObsSpeedMsg_t * msg) ;
 
 void ExtObsSpeedMsg_FromCan(ExtObsSpeedMsg_t * msg) ;
 
-// message ID 0x120 Obsolte_ObsLidarMsg
-// message ID 0x121 Obsolete_UltraSoundMsg
-// message ID 0x160 Obsolete_BrakeReqMsg
-// message ID 0x220 Obsolete_latitudeFrontMsg
-// message ID 0x221 Obsolete_longitudeFrontMsg
-// message ID 0x222 Obsolete_heightFrontMsg
-// message ID 0x223 Obsolete_combineHeightFrontMsg
-// message ID 0x230 Obsolete_latitudeBackMsg
-// message ID 0x231 Obsolete_longitudeBackMsg
-// message ID 0x232 Obsolete_heightBackMsg
-// message ID 0x233 Obsolete_HeadingMsg
-// message ID 0x234 Obsolete_combineHeightBackMsg
-// message ID 0x250 Obsolete_UWBDistanceMsg
-// message ID 0x251 Obsolete_UWBLatitudeMsg
-// message ID 0x252 Obsolete_UWBLongitudeMsg
-// message ID 0x260 Obsolete_CompassMsg
-// message ID 0x321 Obsolete_DriveInfoMsg
-// message ID 0x710 Obsolete_LogIndMsg
+/* Origin_36_merge obsolete placeholder kept disabled after BK definitions were activated.
 typedef struct{ 
 	union
 	{ 
@@ -1775,13 +1759,9 @@ typedef struct{
 		} signals;
 	} raw;
 } ObsoleteMsg_t;
+*/
 
-/* 2-4 rerun: Origin_36_merge represented the following IDs as ObsoleteMsg_t
- * with 64 reserved bits. User confirmed BK message definitions should be
- * active while the Origin obsolete mapping remains documented above.
- */
-
-// message ID 0x120 ObstacleDetectionLiDARMsg
+// message ID 0x120 Obsolte_ObsLidarMsg
 typedef struct{ 
 	union
 	{ 
@@ -1817,7 +1797,7 @@ static void ObstacleDetectionLiDARMsg_FromCan(ObstacleDetectionLiDARMsg_t * msg)
     msg->obstacleDistanceLiDARRegionB = msg->raw.signals.obstacleDistanceLiDARRegionB * 200 * 1.0;
 }
 
-// message ID 0x121 UltraSoundMsg
+// message ID 0x121 Obsolete_UltraSoundMsg
 typedef struct{ 
 	union
 	{ 
@@ -1872,7 +1852,7 @@ static void UltraSoundMsg_FromCan(UltraSoundMsg_t * msg)
     msg->rearWindow = msg->raw.signals.rearWindow * 20 * 1.0;
 }
 
-// message ID 0x160 BrakeReqMsg
+// message ID 0x160 Obsolete_BrakeReqMsg
 typedef struct{ 
 	union
 	{ 
@@ -1884,8 +1864,8 @@ typedef struct{
 	} raw;
 } BrakeReqMsg_t;
 
-// message ID 0x220 latitudeFrontMsg
-// message ID 0x230 latitudeBackMsg
+// message ID 0x220 Obsolete_latitudeFrontMsg
+// message ID 0x230 Obsolete_latitudeBackMsg
 typedef struct{ 
 	union
 	{ 
@@ -1917,8 +1897,8 @@ static void GPSLatitudeMsg_FromCan(GPSLatitudeMsg_t * msg)
        msg->latitude = msg->raw.signals.latitude * 0.00000001;
 }
 
-// message ID 0x222 heightFrontMsg
-// message ID 0x232 heightBackMsg
+// message ID 0x222 Obsolete_heightFrontMsg
+// message ID 0x232 Obsolete_heightBackMsg
 typedef struct{ 
 	union
 	{ 
@@ -1951,8 +1931,8 @@ static void HeightMsg_FromCan(HeightMsg_t * msg)
     msg->differenceBetweenWGS84andSealevel = msg->raw.signals.differenceBetweenWGS84andSealevel * 0.01;
 }
 
-// message ID 0x223 combineHeightFrontMsg
-// message ID 0x234 combineHeightBackMsg
+// message ID 0x223 Obsolete_combineHeightFrontMsg
+// message ID 0x234 Obsolete_combineHeightBackMsg
 typedef struct{ 
 	union
 	{ 
@@ -1978,7 +1958,7 @@ static void CombinedHeightMsg_FromCan(CombinedHeightMsg_t * msg)
     msg->altitude = msg->raw.signals.altitude * 0.01;
 }
 
-// message ID 0x233 HeadingMsg
+// message ID 0x233 Obsolete_HeadingMsg
 typedef struct{ 
 	union
 	{ 
@@ -2003,7 +1983,7 @@ static void HeadingMsg_FromCan(HeadingMsg_t * msg)
     msg->heading = msg->raw.signals.heading * 0.1;
 }
 
-// message ID 0x260 CompassMsg
+// message ID 0x260 Obsolete_CompassMsg
 typedef struct{ 
 	union
 	{ 
@@ -2030,7 +2010,7 @@ static void CompassMsg_FromCan(CompassMsg_t * msg)
     msg->heading = msg->raw.signals.heading * 0.1;
 }
 
-// message ID 0x250 UWBDistanceMsg
+// message ID 0x250 Obsolete_UWBDistanceMsg
 typedef struct{ 
 	union
 	{ 
@@ -2046,7 +2026,7 @@ typedef struct{
 	} raw;
 } UWBDistanceMsg_t;
 
-// message ID 0x251 UWBLatitudeMsg
+// message ID 0x251 Obsolete_UWBLatitudeMsg
 typedef struct{ 
 	union
 	{ 
@@ -2072,7 +2052,7 @@ static void UWBLatitudeMsg_FromCan(UWBLatitudeMsg_t * msg)
     msg->latitude = msg->raw.signals.latitude * 0.00000001;
 }
 
-// message ID 0x252 UWBLongitudeMsg
+// message ID 0x252 Obsolete_UWBLongitudeMsg
 typedef struct{ 
 	union
 	{ 
@@ -2098,7 +2078,7 @@ static void UWBLongitudeMsg_FromCan(UWBLongitudeMsg_t * msg)
     msg->longitude = msg->raw.signals.longitude * 0.00000001;
 }
 
-// message ID 0x321 DriveInfoMsg
+// message ID 0x321 Obsolete_DriveInfoMsg
 typedef struct{ 
 	union
 	{ 
@@ -2144,7 +2124,7 @@ static void DriveInfoMsg_FromCan(DriveInfoMsg_t * msg)
     msg->errorDistance = msg->raw.signals.errorDistance * 0.001;
 }
 
-// message ID 0x710 LogIndMsg
+// message ID 0x710 Obsolete_LogIndMsg
 typedef struct{ 
 	union
 	{ 
@@ -2611,8 +2591,8 @@ static void LatitudeMsg_FromCan(LatitudeMsg_t * msg)
 
 // message ID 0x211 FusionLongitudeFront
 // message ID 0x214 FusionLongitudeRear
-// message ID 0x221 longitudeFrontMsg
-// message ID 0x231 longitudeBackMsg
+// message ID 0x221 Obsolete_longitudeFrontMsg
+// message ID 0x231 Obsolete_longitudeBackMsg
 // message ID 0x7F3 EmulatorLongitude
 typedef struct{ 
 	union
