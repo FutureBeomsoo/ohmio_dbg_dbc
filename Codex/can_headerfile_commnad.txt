@@ -122,7 +122,86 @@
                  결과는 'Origin_36_merge'로 정의한다. 
 
             2-3. Origin_36_merge 와 OhmioLibraries_BK 상호 비교
-                'Origin_36_merge' 결과 물인 `2-1_Origin_36_병합`은 원본 폴더로 취급한다.
-                한쪽 파일에만 포함하고 있는 정보(내용)
-                'Message', 'Signal', 'Enum' 충돌 등
-                '1.file 비교 분석' 작업 지시내용 포함 적용
+                - 'Origin_36_merge' 결과 물인 `2-1_Origin_36_병합`은 원본 폴더로 취급한다.
+                - 한쪽 파일에만 포함하고 있는 정보(내용) - 'Message(Struct)', 'Signal(Member)', 'Enum', 'function', 'macro', 'preprocessor' 등
+                - 'Message(Struct)', 'Signal(Member)', 'Enum', 'function' 등 충돌 여부
+                    - 같은 CAN ID에 대해 서로 다른 Message 정의.
+                    - 같은 CAN Message에 대해 서로 다른 CAN ID 정의.
+                    - 같은 Message(Struct) 에 대해 같은 bit field에 서로 다른 Singnal(Member) 정의.
+                    - 같은 이름 Enum 정의 내에서 entry 정의 차이.
+                    - 'Reserved' Signal(Member)은 표현 그대로 Reserved Signal(Member)이며
+                      정의 된 Signal(Member)이 아닌 bit field 정의에서 각 Signal(Member)의 bit 위치& 범위를 맞추기위한 dummy Signal(Member)이다.
+                - 총돌 'Message(Struct)', 'Signal(Member)', 'Enum', 'function' 등 에 대한 상호 비교
+                    - 항목 - `Message(Struct)` 'Signal(Member)', 'Enum', 'function' 등
+                    - 충돌 지점 - ID, Name, bit field(bit : <LSB_index>-<MSB_index>), 'parameter'등
+                    - Origin_36_merge 와 OhmioLibraries_BK 각 정의 내용
+                - 현 프로젝트 폴대 내 포함하고 있는 모든 폴더 및 파일 외에는 추가 파일은 없다.
+                - `void <Type alias>_ToCAN(<Type alias>_t * msg)`, `void <Type alias>_FromCAN(<Type alias>_t * msg)` 함수에 
+                    대한 함수 정의는 확인 가능한 함수정의 내용을 따른다. - 한쪽은 함수 선언과 함수정의가 있고, 선언만 있고 함수 정의가 없다면 
+                    기본적으로 해당 함수에 대해서 함수 정의가 있는 측의 내용을 따른다.
+
+            2-4 Origin_36_merge 와 OhmioLibraries_BK 병합
+
+                - 예정_작업계획을 각 heade file 별로 작성한다. - file 내용 차이가 많음으로 각 파일 별로 상세하게 작업 계획을 위함.
+
+                - 사용자 점검_필요사항을 heade file 별로 작성한다. - file 내용 차이가 많음으로 각 파일 별로 상세하게 점검하고 지시하기 위함.
+
+                - 작업내용을 heade file 별로 작성한다. - file 내용 차이가 많음으로 각 파일 별로 상세하게 작업 내용 확인 위함 위함.
+
+                - 'Reserved' Signal(Member)은 표현 그대로 Reserved Signal(Member)이며 정의 된 Signal(Member)이 아닌 bit field 정의에서
+                   다른 Signal(Member)들의 bit 위치& 범위를 맞추기위한 dummy Signal(Member)이다.
+                   
+                - Reserved Signal(Member)은 '열성' Reserved이 아닌 Signal(Member)은 '우성'
+                   e.g. 
+                        Reserved로 선언된 같은 bit field 위치해 비교 상대 파일에서 Reserved이 아닌 Named Signal(Member)이 선언 되어있다면
+                        Reserved는 '열성',  Named는 '우성'으로 판단 하여 해당위치에 Named으로 정의.
+
+                - 정의 충돌시 기본적으로 Origin_36_merge의 정의 내용을 '우성', OhmioLibraries_BK의 정의 내용을 '열성'으로 판단 한다.
+                    - CAN ID 에 따른 Message(Struct) 정의 충돌시 기본적으로 Origin_36_merge가 '우성', OhmioLibraries_BK가 '열성'
+                    - Named Signal(Member) 정의 충돌(overlap)시 Origin_36_merge가 '우성', OhmioLibraries_BK가 '열성'
+                    - Reserved Signal(Member)은 '열성' Reserved이 아닌 Named Signal(Member)은 '우성' 
+                        e.g. 
+                                Origin_36_merge 파일에서 Reserved로 선언된 같은 bit field 위치에 OhmioLibraries_BK 파일에서 Reserved이 아닌 Named Signal(Member)이 선언 되어있다면
+                                Reserved는 '열성', Named는 '우성'으로 판단 하여 해당위치에 OhmioLibraries_BK의 Named Signal(Member)으로 정의.
+
+                - 한쪽 파일에만 있는 정의내용은(충돌이 없는) 한쪽에만 있는 내용을 그대로 가져와 추가한다.
+
+                - `void <Type alias>_ToCAN(<Type alias>_t * msg)`, `void <Type alias>_FromCAN(<Type alias>_t * msg)`함수는 기본적으로 확인가능한 정의된 함수 내용을 따른다.
+                    - Signal(Member) 정의 충돌이 없다면 그대로 따른다.
+                    - Signal(Member) 정의 충돌이 있다면 정의 내용을 가져오되, 주석으로 표기 하고, 사용자 점검 필요사항에 기록한다.
+                    e.g.                        
+                        Origin_36_merge 에는 
+                        ```
+                        void ExampleMsg_ToCAN(ExampleMsg_t * msg);
+                        void ExampleMsg_FromCAN(ExampleMsg_t * msg);
+                        ```
+                        와 같이 함수 선언만 있고,
+
+                        OhmioLibraries_BK 에는
+
+                        ```
+                        void ExampleMsg_ToCAN(ExampleMsg_t * msg)
+                        {
+                            assert(msg->ExampleSig0 <= 20.48);
+                            assert(msg->ExampleSig0 >= -20.47);
+                            msg->raw.signals.ExampleSig0 = round(( msg->ExampleSig0 + 20.47) / 0.01 );
+
+                            assert(msg->ExampleSig1 <= 102.3);
+                            assert(msg->ExampleSig1 >= -102.4);
+                            msg->raw.signals.ExampleSig1 = round( msg->ExampleSig1  / 0.1 );
+
+                        }
+                        void ExampleMsg_FromCAN(ExampleMsg_t * msg)
+                        {
+                            msg->ExampleSig0 = raw.signals.ExampleSig0 * 0.01 - 20.47;
+                            msg->ExampleSig1 = raw.signals.ExampleSig1 * 0.1;
+                        }
+                        ```
+                        와 같이 함수 정의와 함께 선언 되어있는 상황을 가정 했을경우.
+
+                        ExampleSig0, ExampleSig1 ... 등이 Origin_36_merge와 OhmioLibraries_BK의 ExampleMsg_t에 동일하게 정의 되어 있는지 확인.
+                        동일하게 정의 -> OhmioLibraries_BK의 정의 내용 그대로 수용(정의).
+                        OhmioLibraries_BK 에만 있는 Signal(Member) -> OhmioLibraries_BK의 정의 내용 그대로 수용(정의). + 주석 표시.
+                        Origin_36_merge와 OhmioLibraries_BK의 Signal 충돌 ( Name , bit field overlap 등) -> OhmioLibraries_BK의 정의 내용 그대로 수용(정의). + 주석 표시.
+
+                - 2-3 결과물 참고(2-3_Origin_36_merge_OhmioLibraries_BK_상호비교_재수행)

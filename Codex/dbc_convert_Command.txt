@@ -408,7 +408,7 @@ void <Type alias>_FromCAN(<Type alias>_t * msg)
             msg->raw.signals.ExampleSig1 = round( msg->ExampleSig1  / 0.1 );
 
         }
-        void ExampleMsg_FromCAN(ExampleMsg_t * msg);
+        void ExampleMsg_FromCAN(ExampleMsg_t * msg)
         {
             msg->ExampleSig0 = raw.signals.ExampleSig0 * 0.01 - 20.47;
             msg->ExampleSig1 = raw.signals.ExampleSig1 * 0.1;
