@@ -35,3 +35,10 @@
 - Chassis CAN 사용자 점검 필요사항의 사용자 의견을 확인했다.
 - Struct/DLC 미확인 CAN_ID enum 15개를 적용 제외 확정으로 확인하고 `Codex/사용자_참고_사항.md`에 미추적 Message 목록을 작성했다.
 - 원본 헤더 파일은 수정하지 않았다.
+
+## 2026-06-12 11:51:55 KST
+
+- Chassis CAN 및 Body CAN 사용자 점검 필요사항의 사용자 의견을 확인하고 적용했다.
+- Chassis CAN은 `ErrorSteering_t` 연결 확정 및 Struct/DLC 미확인 CAN_ID enum 15개 적용 제외 확정으로 점검사항을 정리했다.
+- Body CAN은 확장 ID에 `0x80000000` 플래그를 더한 Vector DBC 표기로 `BO_` 초안과 작업내용의 `DBC CAN ID` 값을 갱신했다.
+- 원본 헤더 파일은 수정하지 않았다.

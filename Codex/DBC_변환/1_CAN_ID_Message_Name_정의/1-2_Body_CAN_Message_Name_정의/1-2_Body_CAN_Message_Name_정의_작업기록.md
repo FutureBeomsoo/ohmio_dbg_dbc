@@ -10,3 +10,11 @@
 - CAN 2.0B 확장 ID의 DBC 표기 방식 확인 필요사항을 기록했다.
 - DBC 파일 내부 `VERSION` 문자열은 DBC 도구 호환성을 위해 ASCII로 정리했다.
 - 원본 헤더 파일은 수정하지 않았다.
+
+## 2026-06-12 11:51:55 KST
+
+- 사용자 점검 필요사항의 사용자 의견을 확인했다.
+- CAN 2.0B 확장 ID에 `0x80000000` 플래그를 더한 Vector DBC 표기 적용을 확정했다.
+- `1-2_Body_CAN_Message_Name_정의_BO_초안.dbc`의 `BO_` 및 `CM_ BO_` CAN ID 85개를 원본 CAN ID + `0x80000000` 값으로 갱신했다.
+- `1-2_Body_CAN_Message_Name_정의_작업내용.md`의 `DBC CAN ID` 컬럼도 Vector DBC 표기 값으로 갱신했다.
+- 원본 헤더 파일은 수정하지 않았다.

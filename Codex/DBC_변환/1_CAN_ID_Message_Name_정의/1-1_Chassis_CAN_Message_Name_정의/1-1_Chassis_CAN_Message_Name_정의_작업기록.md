@@ -25,3 +25,10 @@
 - Struct/DLC가 확인되지 않은 CAN_ID enum 항목 15개는 적용 제외 확정으로 확인했다.
 - `Codex/사용자_참고_사항.md`에 미추적 Message 목록을 작성했다.
 - 원본 헤더 파일은 수정하지 않았다.
+
+## 2026-06-12 11:51:55 KST
+
+- Chassis CAN 점검 필요사항 문서에 사용자 의견 반영 결과를 명시했다.
+- `ErrorFrontSteering`, `ErrorRearSteering`은 기존 BO 초안의 `ErrorSteering_t` 연결이 확정된 상태이므로 DBC 초안 추가 변경 없음으로 정리했다.
+- Struct/DLC 미확인 CAN_ID enum 15개는 적용 제외 확정 및 `Codex/사용자_참고_사항.md` 기록 완료로 정리했다.
+- 원본 헤더 파일은 수정하지 않았다.

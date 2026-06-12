@@ -1,0 +1,708 @@
+VERSION "2-2_Body_CAN_Signal_Draft"
+
+NS_:
+    CM_
+
+BS_: 250000
+
+BU_: Vector__XXX
+
+BO_ 2164588560 AVASReqMsg: 8 Vector__XXX
+ SG_ speed : 0|8@1+ (0.2,0) [0|50] "km/h" Vector__XXX
+ SG_ reverse : 8|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ count : 48|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ checksum : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2164588575 AVASStatusMsg: 8 Vector__XXX
+ SG_ active : 0|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ voltage : 8|8@1+ (0.1,0) [0|25.5] "V" Vector__XXX
+ SG_ error : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ count : 48|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ checksum : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2208538887 BmsLotteTotalChangeValue: 8 Vector__XXX
+ SG_ T_Change_Volt : 0|16@1- (0.001,0) [-32.768|32.767] "V" Vector__XXX
+ SG_ T_Change_Temp : 16|16@1- (1,0) [-32768|32767] " " Vector__XXX
+ SG_ T_Change_Curr : 32|16@1- (0.1,0) [-3276.8|3276.7] "A" Vector__XXX
+
+BO_ 2222981531 CollisionEventInfo: 8 Vector__XXX
+ SG_ counter : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ remoteID : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ distance : 16|8@1+ (1,0) [0|255] "m" Vector__XXX
+ SG_ direction : 24|4@1+ (1,0) [0|15] " " Vector__XXX
+ SG_ status : 28|4@1+ (1,0) [0|15] " " Vector__XXX
+ SG_ timestamp : 32|32@1+ (1,0) [0|4294967295] " " Vector__XXX
+
+BO_ 2223243675 CollisionEventConfig1: 8 Vector__XXX
+ SG_ maxSpeedW : 0|8@1+ (30,0) [0|7650] "mm/s" Vector__XXX
+ SG_ maxSpeedInfo : 8|8@1+ (30,0) [0|7650] "mm/s" Vector__XXX
+
+BO_ 2355557621 BMSReqMsg: 8 Vector__XXX
+ SG_ mode : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ counter : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2364539631 BmsLotteVehiclecontroller: 8 Vector__XXX
+ SG_ V_BMS_HV_Connect_Cmd : 1|1@1+ (1,0) [0|1] " " Vector__XXX
+
+BO_ 2364866852 BmsLotteStatus: 8 Vector__XXX
+ SG_ BS_Cell_OVP_Warning : 0|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Cell_UVP_Warning : 2|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Insulation_Warning : 4|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Temperature_Higher_Warning : 6|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Contactor_Fault : 8|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_SOH_Warning : 10|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Short_Circuit : 12|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Feed_Warning : 14|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Output_OverCurrent_Warning : 20|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Cell_Imbalance_Warning : 22|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Communication_Fault : 24|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Hardware_FaultOWD : 26|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Pack_Over_Voltage_Warning : 28|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Power_Reduce_Indicator : 30|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Negative_Contactor_Status : 32|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ BS_Positive_Contactor_Status : 33|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ BS_Fault_Level : 34|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_ShutDown_Request : 36|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ BS_checkover : 37|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ BS_TBOX_Drop_Line : 39|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ BS_Feedback_Current_Large : 40|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ BS_Relay_Adhesion : 41|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ BS_Pack_UVP_Warning : 42|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Pack_Imbalance_TEMP_Warning : 44|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Temperature_Lower_Warning : 46|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_SOC_high : 48|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ BS_Interlock_Error : 49|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ BS_Electronic_Lock_Error : 50|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ BS_Charge_Temperature_High : 51|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_SOC_Low : 53|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Heating_Relay : 56|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ BS_Slow_Charge_Over_Current : 60|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ BS_Fast_Charge_Over_Current : 62|2@1+ (1,0) [0|3] " " Vector__XXX
+
+BO_ 2418016256 voiceReq: 8 Vector__XXX
+ SG_ command : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ value : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2418016271 voiceResp: 8 Vector__XXX
+ SG_ command : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ value : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065088 FrontMainLightReqMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065103 FrontMainLightStatusMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065104 FrontDipLightReqMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065119 FrontDipLightStatusMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065120 FrontDayLightReqMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065135 FrontDayLightStatusMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065136 FrontPosOutlineMarkerReqMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065151 FrontPosOutlineMarkerStatusMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065344 RearReverseLightReqMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065359 RearReverseLightStatusMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065360 RearTailOutlineMarkerReqMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065375 RearTailOutlineMarkerStatusMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065376 RearRegLightReqMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065391 RearRegLightStatusMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065600 HornReqMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2419065615 HornStatusMsg: 8 Vector__XXX
+ SG_ on : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113408 FrontLightReq: 8 Vector__XXX
+ SG_ mainLeft : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ mainRight : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ logo : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ internalPWM : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113415 FrontLightStatus: 8 Vector__XXX
+ SG_ mainLeft : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ mainRight : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ logo : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ internalPWM : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113416 RearLightReq: 8 Vector__XXX
+ SG_ mainLeft : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ mainRight : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ logo : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ audio : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ horn : 48|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ flash : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113423 RearLightStatus: 8 Vector__XXX
+ SG_ mainLeft : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ mainRight : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ logo : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ audio : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ horn : 48|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ flash : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113424 OvalFrontLeftStatus: 8 Vector__XXX
+ SG_ mode : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ fixBright : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ redBright : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ greenBright : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ blueBright : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ redError : 40|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ greenError : 48|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ blueError : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113439 OvalFrontLeftReq: 8 Vector__XXX
+ SG_ mode : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ fixBright : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ redBright : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ greenBright : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ blueBright : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113440 OvalFrontRightStatus: 8 Vector__XXX
+ SG_ mode : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ fixBright : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ redBright : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ greenBright : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ blueBright : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ redError : 40|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ greenError : 48|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ blueError : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113455 OvalFrontRightReq: 8 Vector__XXX
+ SG_ mode : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ fixBright : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ redBright : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ greenBright : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ blueBright : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113456 OvalRearLeftStatus: 8 Vector__XXX
+ SG_ mode : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ fixBright : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ redBright : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ greenBright : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ blueBright : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ redError : 40|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ greenError : 48|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ blueError : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113471 OvalRearLeftReq: 8 Vector__XXX
+ SG_ mode : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ fixBright : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ redBright : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ greenBright : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ blueBright : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113472 OvalRearRightStatus: 8 Vector__XXX
+ SG_ mode : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ fixBright : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ redBright : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ greenBright : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ blueBright : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ redError : 40|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ greenError : 48|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ blueError : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113487 OvalRearRightReq: 8 Vector__XXX
+ SG_ mode : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ fixBright : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ redBright : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ greenBright : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ blueBright : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113664 DoorStatusMsg: 8 Vector__XXX
+ SG_ heartbeat : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ opening : 8|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ closing : 9|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ opened : 10|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ closed : 11|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ openTimeout : 12|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ closeTimeout : 13|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ buttonEnable : 14|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ doorLock : 16|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ doorClamp : 17|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ fault1 : 18|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ fault2 : 19|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ buttonPressed : 20|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ dcdcVolt : 31|16@0+ (0.049,0) [0|3211.215] "V" Vector__XXX
+ SG_ battVolt : 47|16@0+ (0.049,0) [0|3211.215] "V" Vector__XXX
+
+BO_ 2420113671 DoorReqMsg: 8 Vector__XXX
+ SG_ heartbeat : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ open : 8|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ close : 9|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ buttonEnable : 10|1@1+ (1,0) [0|1] " " Vector__XXX
+
+BO_ 2420113921 StepReqMsg: 8 Vector__XXX
+ SG_ in : 0|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ out : 1|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ count : 48|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ checksum : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2420113928 StepStatusMsg: 8 Vector__XXX
+ SG_ status : 0|3@1+ (1,0) [0|4] " " Vector__XXX
+ SG_ motorFault : 3|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ overCurrent : 4|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ overWeight : 5|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ current : 16|8@1+ (0.1,0) [0|25.5] "A" Vector__XXX
+ SG_ voltage : 24|8@1+ (0.1,0) [0|25.5] "V" Vector__XXX
+ SG_ count : 48|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ checksum : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2422210560 FootReqMsg: 8 Vector__XXX
+ SG_ request : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ liftFire : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2422210576 Foot1Status: 5 Vector__XXX
+ SG_ status : 0|8@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ mode : 8|8@1+ (1,0) [0|2] " " Vector__XXX
+ SG_ error : 16|8@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ current : 24|16@1+ (0.01,0) [0|30] "A" Vector__XXX
+
+BO_ 2422210592 Foot2Status: 7 Vector__XXX
+ SG_ status : 0|8@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ mode : 8|8@1+ (1,0) [0|2] " " Vector__XXX
+ SG_ error : 16|8@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ current : 24|16@1+ (0.01,0) [0|30] "A" Vector__XXX
+ SG_ liftFireStatus : 40|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ liftOutStatus : 48|1@1+ (1,0) [0|1] " " Vector__XXX
+
+BO_ 2423259136 Wiper1ReqMsg: 8 Vector__XXX
+ SG_ mode : 0|4@1+ (1,0) [0|15] " " Vector__XXX
+ SG_ washer : 4|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ interval : 8|8@1+ (0.1,0) [0|25.5] "sec" Vector__XXX
+
+BO_ 2423259151 Wiper1StatusMsg: 8 Vector__XXX
+ SG_ mode : 0|4@1+ (1,0) [0|15] " " Vector__XXX
+ SG_ washer : 4|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ interval : 8|8@1+ (0.1,0) [0|25.5] "sec" Vector__XXX
+
+BO_ 2423259152 Wiper2ReqMsg: 8 Vector__XXX
+ SG_ mode : 0|4@1+ (1,0) [0|15] " " Vector__XXX
+ SG_ washer : 4|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ interval : 8|8@1+ (0.1,0) [0|25.5] "sec" Vector__XXX
+
+BO_ 2423259167 Wiper2StatusMsg: 8 Vector__XXX
+ SG_ mode : 0|4@1+ (1,0) [0|15] " " Vector__XXX
+ SG_ washer : 4|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ interval : 8|8@1+ (0.1,0) [0|25.5] "sec" Vector__XXX
+
+BO_ 2424501748 BMSStatusMsg1: 8 Vector__XXX
+ SG_ errorLevel : 0|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ status : 2|4@1+ (1,0) [0|15] " " Vector__XXX
+ SG_ quickChargeReq : 6|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ slowChargeReq : 7|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ insulationError : 8|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ overCurrent : 10|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ overTemp : 12|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ unevenTemp : 14|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ unbalanceVolt : 16|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ lowSOC : 18|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ highSOC : 20|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ lowTemp : 22|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ highInrushCurrent : 24|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ highVolt : 26|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ lowVolt : 28|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ highCellVolt : 30|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ lowCellVolt : 32|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ highFeedbackCurrent : 34|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ currentSensorError : 36|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ commsError : 37|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ TempSensorError : 38|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ slowChargeOverCurrent : 39|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ prechargeError : 40|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ chargeInterlockError : 41|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ dischargeInterlockError : 42|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ positiveRelayError : 43|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ negativeRelayError : 44|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ voltSamplingLineBroke : 45|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ batteryPackUnmatch : 47|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ internalCommsError : 48|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ cellVoltSamplingLineBroke : 49|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ tempSamplingLineBroke : 50|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ currentSamplingLineBroke : 51|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ fastChargeCommsError : 52|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ carChargeCommsError : 53|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ continuousDischargeOverCurrent : 54|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ counter : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2424567284 BMSStatusMsg2: 8 Vector__XXX
+ SG_ voltage : 7|16@0+ (0.1,0) [0|1000] "V" Vector__XXX
+ SG_ DCLinkVolt : 23|16@0+ (0.1,0) [0|1000] "V" Vector__XXX
+ SG_ DCCurrent : 39|16@0+ (0.1,-1000) [-1000|1000] "A" Vector__XXX
+ SG_ chargerPlugOverTemp : 48|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ chargerPlugTempLineBroke : 49|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ heatRelayError : 50|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ heatCircuitError : 51|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ counter : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2424632820 BMSStatusMsg3: 8 Vector__XXX
+ SG_ maxDisCur : 7|16@0+ (0.1,0) [0|1000] "A" Vector__XXX
+ SG_ maxChargeCur : 23|16@0+ (0.1,0) [0|1000] "A" Vector__XXX
+ SG_ constDisCur : 39|16@0+ (0.1,0) [0|1000] "A" Vector__XXX
+ SG_ constChargeCur : 55|16@0+ (0.1,0) [0|1000] "A" Vector__XXX
+
+BO_ 2424698356 BMSStatusMsg4: 8 Vector__XXX
+ SG_ remainEnergy : 7|16@0+ (0.1,0) [0|1000] "kwh" Vector__XXX
+ SG_ soh : 16|8@1+ (0.5,0) [0|100] "%" Vector__XXX
+ SG_ soc : 24|8@1+ (0.5,0) [0|100] "%" Vector__XXX
+ SG_ insResistance : 39|16@0+ (1,0) [0|65535] "kOhm" Vector__XXX
+ SG_ posRelayClosed : 48|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ negRelayClosed : 49|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ preRelayClosed : 50|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ chargeRelayClosed : 51|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ fastChargeConnected : 52|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ heatRelayClosed : 53|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ disconnectReq : 54|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ slowChargeConnected : 55|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ counter : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2424763892 BMSStatusMsg5: 8 Vector__XXX
+ SG_ averageTemp : 0|8@1+ (1,-100) [-100|150] "degrees" Vector__XXX
+ SG_ tempSensorNum : 8|8@1+ (1,0) [1|255] " " Vector__XXX
+ SG_ maxTemp : 16|8@1+ (1,-100) [-100|150] "degrees" Vector__XXX
+ SG_ minTemp : 24|8@1+ (1,-100) [-100|150] "degrees" Vector__XXX
+ SG_ maxTempNum : 32|8@1+ (1,0) [1|255] " " Vector__XXX
+ SG_ minTempNum : 40|8@1+ (1,0) [1|255] " " Vector__XXX
+ SG_ cellSumNum : 55|16@0+ (1,0) [1|65535] " " Vector__XXX
+
+BO_ 2424829428 BMSStatusMsg6: 8 Vector__XXX
+ SG_ maxCellVolt : 7|16@0+ (1,0) [0|5000] "mV" Vector__XXX
+ SG_ minCellVolt : 23|16@0+ (1,0) [0|5000] "mV" Vector__XXX
+ SG_ maxCellVoltNum : 32|8@1+ (1,0) [1|255] " " Vector__XXX
+ SG_ minCellVoltNum : 40|8@1+ (1,0) [1|255] " " Vector__XXX
+ SG_ averageCellVolt : 55|16@0+ (1,0) [0|5000] "mV" Vector__XXX
+
+BO_ 2424894964 BMSStatusMsg7: 8 Vector__XXX
+ SG_ totalPacketFrames : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ packetSeqNum : 8|8@1+ (1,0) [1|255] " " Vector__XXX
+ SG_ cellSamplingVolt : 23|16@0+ (0.001,0) [0|5] "V" Vector__XXX
+ SG_ cellSamplingVolt2 : 39|16@0+ (0.001,0) [0|5] "V" Vector__XXX
+ SG_ cellSamplingVolt3 : 55|16@0+ (0.001,0) [0|5] "V" Vector__XXX
+
+BO_ 2424960500 BMSStatusMsg8: 8 Vector__XXX
+ SG_ totalPacketFrames : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ packetSeqNum : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ cellSamplingTemp : 23|8@0+ (1,-40) [-40|210] "degrees" Vector__XXX
+ SG_ cellSamplingTemp2 : 31|8@0+ (1,-40) [-40|210] "degrees" Vector__XXX
+ SG_ cellSamplingTemp3 : 39|8@0+ (1,-40) [-40|210] "degrees" Vector__XXX
+ SG_ cellSamplingTemp4 : 40|8@1+ (1,0) [0|255] "degrees" Vector__XXX
+ SG_ cellSamplingTemp5 : 48|8@1+ (1,0) [0|255] "degrees" Vector__XXX
+ SG_ cellSamplingTemp6 : 56|8@1+ (1,0) [0|255] "degrees" Vector__XXX
+
+BO_ 2550588916 BMS2ChargerReqMsg: 8 Vector__XXX
+ SG_ maxChargeVolt : 7|16@0+ (0.1,0) [0|6553.5] "V" Vector__XXX
+ SG_ maxChargeCurrent : 23|16@0+ (0.1,0) [0|6553.5] "A" Vector__XXX
+ SG_ outputOff : 32|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ heating : 40|1@1+ (1,0) [0|1] " " Vector__XXX
+
+BO_ 2553649700 BmsLotteLandmark6: 8 Vector__XXX
+ SG_ Manufactoring_Y1 : 0|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ Manufactoring_Y2 : 8|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ Manufactoring_Y3 : 16|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ Manufactoring_Y4 : 24|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ Manufactoring_M1 : 32|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ Manufactoring_M2 : 40|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ Manufactoring_D1 : 48|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ Manufactoring_D2 : 56|8@1- (1,-48) [-48|207] " " Vector__XXX
+
+BO_ 2553715236 BmsLotteLandmark7: 8 Vector__XXX
+ SG_ BMS_Serial_Y1 : 0|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ BMS_Serial_Y2 : 8|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ BMS_Serial_M1 : 16|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ BMS_Serial_M2 : 24|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ BMS_Serial_PC : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ BMS_Serial_N1 : 40|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ BMS_Serial_N2 : 48|8@1- (1,-48) [-48|207] " " Vector__XXX
+ SG_ BMS_Serial_N3 : 56|8@1- (1,-48) [-48|207] " " Vector__XXX
+
+BO_ 2553780772 BmsLotteLandmark8: 8 Vector__XXX
+ SG_ BL8_SW_Ver : 7|16@0+ (1,0) [0|65535] " " Vector__XXX
+ SG_ BL8_HW_Ver : 23|16@0+ (1,0) [0|65535] " " Vector__XXX
+
+BO_ 2565160996 BmsLotteChargerInfo: 8 Vector__XXX
+ SG_ CHG_Control : 0|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ CHG_MAX_Voltage : 8|16@1+ (0.1,0) [0|6553.5] "V" Vector__XXX
+ SG_ CHG_MAX_Current : 24|16@1- (0.1,-320) [-320|6233.5] "A" Vector__XXX
+ SG_ Load_Type : 40|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ Load_Relay_Mode : 41|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ Remaining_Charging_Time : 48|16@1+ (1,0) [0|65535] "min" Vector__XXX
+
+BO_ 2566197540 BmsLotteDrive1: 8 Vector__XXX
+ SG_ BD1_Voltage : 0|16@1+ (0.1,0) [0|6553.5] "V" Vector__XXX
+ SG_ BD1_Current : 16|16@1- (0.1,-320) [-320|6233.5] "A" Vector__XXX
+ SG_ BD1_Posi_ISO_Resistor : 32|16@1+ (1,0) [0|65535] "M??" Vector__XXX
+ SG_ BD1_SOC : 48|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ BD1_Number_of_Battery : 56|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2566201892 BmsLotteDrive2: 8 Vector__XXX
+ SG_ BD2_Cell_MAX_Volt : 0|16@1+ (0.001,0) [0|65.535] "V" Vector__XXX
+ SG_ BD2_Cell_MAX_Volt_NO : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ BD2_Cell_MIN_Volt : 24|16@1+ (0.001,0) [0|65.535] "V" Vector__XXX
+ SG_ BD2_Cell_MIN_Volt_NO : 40|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ BD2_SOH : 48|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ BD2_Battery_Capacity : 56|8@1+ (1,0) [0|255] "Ah" Vector__XXX
+
+BO_ 2566206244 BmsLotteDrive3: 8 Vector__XXX
+ SG_ BD3_Batt_MAX_Temp : 0|8@1- (1,-40) [-168|87] "??" Vector__XXX
+ SG_ BD3_Max_Temp_NO : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ BD3_Batt_MIN_Temp : 16|8@1- (1,-40) [-168|87] "??" Vector__XXX
+ SG_ BD3_Min_Temp_NO : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ BD3_Vehicle_MAX_Charge_Power : 32|8@1+ (1,0) [0|255] "KW" Vector__XXX
+ SG_ BD3_Vehicle_MAX_Discharge_Power : 40|8@1+ (1,0) [0|255] "KW" Vector__XXX
+ SG_ BD3_Vehicle_Rated_CHG_Power : 48|8@1+ (1,0) [0|255] "KW" Vector__XXX
+ SG_ BD3_Vehicle_RatedDisCHG_Power : 56|8@1+ (1,0) [0|255] "KW" Vector__XXX
+
+BO_ 2566747428 BmsLotteChargeVehicle: 8 Vector__XXX
+ SG_ Charge_OverCurrent : 0|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ Auxiliary_Charge_Relay_Fault : 2|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ CHG_Communicaiton_Fault : 4|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ Charger_Warning : 6|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ CHG_Indication : 8|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ CHG_Connect_Indication : 10|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ Turn_Off_Power_Battery : 12|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ CHG_MAX_Voltage : 16|16@1+ (0.1,0) [0|6553.5] "V" Vector__XXX
+ SG_ CHG_MAX_Current : 32|16@1- (0.1,-320) [-320|6233.5] " " Vector__XXX
+
+BO_ 2566866420 AirConReqMsg: 8 Vector__XXX
+ SG_ mode : 0|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ level : 2|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ temperature : 4|4@1+ (1,15) [15|30] " " Vector__XXX
+ SG_ roofLight : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ JJK161Level : 16|3@1+ (1,0) [0|7] " " Vector__XXX
+
+BO_ 2566869221 ChargerStatusMsg: 8 Vector__XXX
+ SG_ outputVolt : 7|16@0+ (0.1,0) [0|6553.5] "V" Vector__XXX
+ SG_ outputCurrent : 23|16@0+ (0.1,0) [0|6553.5] "A" Vector__XXX
+ SG_ hardwareFail : 32|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ overTemp : 33|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ inputVoltError : 34|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ batteryConnectError : 35|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ CommsError : 36|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ ChargerCableConnected : 37|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ temperature : 40|8@1+ (1,-100) [-100|155] "degrees" Vector__XXX
+
+BO_ 2566897978 AirConStatusMsg: 8 Vector__XXX
+ SG_ airConTemp : 8|8@1+ (1,-40) [-40|214] "degree C" Vector__XXX
+ SG_ roomTemp : 16|8@1+ (1,-40) [-40|214] "degree C" Vector__XXX
+
+BO_ 2566897979 AirConVersionMsg: 8 Vector__XXX
+ SG_ ManufactCode : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ HWMajorVer : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ HWMinorVer : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2566897980 AirConJJK161StatusMsg: 8 Vector__XXX
+ SG_ mode : 0|2@1+ (1,0) [0|3] " " Vector__XXX
+ SG_ reqTemp : 4|4@1+ (1,0) [0|15] " " Vector__XXX
+ SG_ level : 8|3@1+ (1,0) [0|7] " " Vector__XXX
+ SG_ airConTemp1 : 16|8@1+ (1,0) [0|255] "degree C" Vector__XXX
+ SG_ airConTemp2 : 24|8@1+ (1,0) [0|255] "degree C" Vector__XXX
+ SG_ roomTemp : 32|8@1+ (1,0) [0|255] "degree C" Vector__XXX
+ SG_ outdoorTemp : 40|8@1+ (1,0) [0|255] "degree C" Vector__XXX
+ SG_ errorCode : 56|6@1+ (1,0) [0|63] " " Vector__XXX
+ SG_ errorLevel : 62|2@1+ (1,0) [0|3] " " Vector__XXX
+
+BO_ 2566914064 Signal1Debug: 8 Vector__XXX
+ SG_ sigState : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ steerState : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ io1 : 16|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ io2 : 17|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ io3 : 18|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ io4 : 19|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ io5 : 20|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ io6 : 21|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ EHBFire_io7 : 22|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ VCU_io8 : 23|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ steerFire : 24|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ aux_in1 : 32|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ hw_in : 33|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ timestamp : 40|24@1+ (1,0) [0|16777215] " " Vector__XXX
+
+BO_ 2566914080 Signal2Debug: 8 Vector__XXX
+ SG_ sigState : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ steerState : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ io1 : 16|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ io2 : 17|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ io3 : 18|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ io4 : 19|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ io5 : 20|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ io6 : 21|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ EHBFire_io7 : 22|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ VCU_io8 : 23|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ steerFire : 24|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ aux_in1 : 32|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ hw_in : 33|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ timestamp : 40|24@1+ (1,0) [0|16777215] " " Vector__XXX
+
+BO_ 2600472576 DTGSpeedRpmMsg: 8 Vector__XXX
+ SG_ motorRPM : 0|16@1- (1,0) [-32768|32767] "rpm" Vector__XXX
+ SG_ speed : 16|8@1+ (1,0) [0|255] "km/h" Vector__XXX
+
+BO_ 2600472592 DTGBrakeInfoMsg: 8 Vector__XXX
+ SG_ EHBReqPressure : 0|8@1+ (1,0) [0|255] "bar" Vector__XXX
+ SG_ EHBActualPressure : 8|8@1+ (1,0) [0|255] "bar" Vector__XXX
+ SG_ EHBError : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ EPBReq : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ EPBLeftStatus : 40|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ EPBRightStatus : 48|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2633171444 BMSStatusMsg11: 8 Vector__XXX
+ SG_ vendorNum : 0|32@1+ (1,0) [0|4294967295] " " Vector__XXX
+ SG_ hardwareVersion : 32|16@1+ (1,0) [0|65535] " " Vector__XXX
+ SG_ softwareVersion : 48|16@1+ (1,0) [0|65535] " " Vector__XXX
+
+BO_ 2633171700 BMSStatusMsg12: 8 Vector__XXX
+ SG_ chargerPlugPosTemp : 0|8@1+ (1,-100) [-100|150] "degrees" Vector__XXX
+ SG_ chargerPlugNegTemp : 8|8@1+ (1,-100) [-100|150] "degrees" Vector__XXX
+ SG_ resistance : 23|16@0+ (1,0) [0|65535] "kOhm" Vector__XXX
+ SG_ heatCurrent : 39|16@0+ (0.1,-1000) [-1000|1000] "A" Vector__XXX
+
+BO_ 2633171956 BMSChargingCurrent: 8 Vector__XXX
+ SG_ byte0 : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ byte1 : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ byte2 : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ ChargeCurrent : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ byte4 : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2633172212 BMSChargingCurrentReply: 8 Vector__XXX
+ SG_ ChargingCurrent : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+
+BO_ 2634023168 PeripheralVersionReqMsg: 8 Vector__XXX
+ SG_ id : 0|16@1+ (1,0) [0|65535] " " Vector__XXX
+
+BO_ 2634023169 PeripheralVersionMsg: 8 Vector__XXX
+ SG_ id : 0|16@1+ (1,0) [0|65535] " " Vector__XXX
+ SG_ major : 16|7@1+ (1,0) [0|127] " " Vector__XXX
+ SG_ debug : 23|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ minor : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ build : 32|32@1+ (1,0) [0|4294967295] " " Vector__XXX
+
+BO_ 2634023170 PeripheralBootVerMsg: 8 Vector__XXX
+ SG_ id : 0|16@1+ (1,0) [0|65535] " " Vector__XXX
+ SG_ major : 16|7@1+ (1,0) [0|127] " " Vector__XXX
+ SG_ debug : 23|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ minor : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ build : 32|32@1+ (1,0) [0|4294967295] " " Vector__XXX
+
+BO_ 2634023171 PeripheralOcanDBCVerMsg: 8 Vector__XXX
+ SG_ id : 0|16@1+ (1,0) [0|65535] " " Vector__XXX
+ SG_ major : 16|7@1+ (1,0) [0|127] " " Vector__XXX
+ SG_ debug : 23|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ minor : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ build : 32|32@1+ (1,0) [0|4294967295] " " Vector__XXX
+
+BO_ 2634023172 PeripheralPcanDBCVerMsg: 8 Vector__XXX
+ SG_ id : 0|16@1+ (1,0) [0|65535] " " Vector__XXX
+ SG_ major : 16|7@1+ (1,0) [0|127] " " Vector__XXX
+ SG_ debug : 23|1@1+ (1,0) [0|1] " " Vector__XXX
+ SG_ minor : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ build : 32|32@1+ (1,0) [0|4294967295] " " Vector__XXX
+
+BO_ 2667577344 Recovery: 1 Vector__XXX
+
+CM_ BO_ 2164588560 "Signal reference struct: AVASReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 199; original CAN ID: 0x1050010";
+CM_ BO_ 2164588575 "Signal reference struct: AVASStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 1135; original CAN ID: 0x105001F";
+CM_ BO_ 2208538887 "Signal reference struct: BmsLotteTotalChangeValue_t; source header: dbc_CAN_peripheral.h; source line: 1607; original CAN ID: 0x3A3A107";
+CM_ BO_ 2222981531 "Signal reference struct: CollisionEventInfo_t; source header: Security_CAN.h; source line: 8; original CAN ID: 0x480019B";
+CM_ BO_ 2223243675 "Signal reference struct: CollisionEventConfig1_t; source header: Security_CAN.h; source line: 25; original CAN ID: 0x484019B";
+CM_ BO_ 2355557621 "Signal reference struct: BMSReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 11; original CAN ID: 0xC66F4F5";
+CM_ BO_ 2364539631 "Signal reference struct: BmsLotteVehiclecontroller_t; source header: dbc_CAN_peripheral.h; source line: 1640; original CAN ID: 0xCF002EF";
+CM_ BO_ 2364866852 "Signal reference struct: BmsLotteStatus_t; source header: dbc_CAN_peripheral.h; source line: 1216; original CAN ID: 0xCF50124";
+CM_ BO_ 2418016256 "Signal reference struct: VoiceMsg_t; source header: dbc_CAN_peripheral.h; source line: 25; original CAN ID: 0x10200000";
+CM_ BO_ 2418016271 "Signal reference struct: VoiceMsg_t; source header: dbc_CAN_peripheral.h; source line: 26; original CAN ID: 0x1020000F";
+CM_ BO_ 2419065088 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 39; original CAN ID: 0x10300100";
+CM_ BO_ 2419065103 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 40; original CAN ID: 0x1030010F";
+CM_ BO_ 2419065104 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 41; original CAN ID: 0x10300110";
+CM_ BO_ 2419065119 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 42; original CAN ID: 0x1030011F";
+CM_ BO_ 2419065120 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 43; original CAN ID: 0x10300120";
+CM_ BO_ 2419065135 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 44; original CAN ID: 0x1030012F";
+CM_ BO_ 2419065136 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 45; original CAN ID: 0x10300130";
+CM_ BO_ 2419065151 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 46; original CAN ID: 0x1030013F";
+CM_ BO_ 2419065344 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 47; original CAN ID: 0x10300200";
+CM_ BO_ 2419065359 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 48; original CAN ID: 0x1030020F";
+CM_ BO_ 2419065360 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 49; original CAN ID: 0x10300210";
+CM_ BO_ 2419065375 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 50; original CAN ID: 0x1030021F";
+CM_ BO_ 2419065376 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 51; original CAN ID: 0x10300220";
+CM_ BO_ 2419065391 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 52; original CAN ID: 0x1030022F";
+CM_ BO_ 2419065600 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 53; original CAN ID: 0x10300300";
+CM_ BO_ 2419065615 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 54; original CAN ID: 0x1030030F";
+CM_ BO_ 2420113408 "Signal reference struct: FrontLightMsg_t; source header: dbc_CAN_peripheral.h; source line: 66; original CAN ID: 0x10400000";
+CM_ BO_ 2420113415 "Signal reference struct: FrontLightMsg_t; source header: dbc_CAN_peripheral.h; source line: 67; original CAN ID: 0x10400007";
+CM_ BO_ 2420113416 "Signal reference struct: RearLightMsg_t; source header: dbc_CAN_peripheral.h; source line: 83; original CAN ID: 0x10400008";
+CM_ BO_ 2420113423 "Signal reference struct: RearLightMsg_t; source header: dbc_CAN_peripheral.h; source line: 84; original CAN ID: 0x1040000F";
+CM_ BO_ 2420113424 "Signal reference struct: OvalLightStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 102; original CAN ID: 0x10400010";
+CM_ BO_ 2420113439 "Signal reference struct: OvalLightReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 124; original CAN ID: 0x1040001F";
+CM_ BO_ 2420113440 "Signal reference struct: OvalLightStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 103; original CAN ID: 0x10400020";
+CM_ BO_ 2420113455 "Signal reference struct: OvalLightReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 125; original CAN ID: 0x1040002F";
+CM_ BO_ 2420113456 "Signal reference struct: OvalLightStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 104; original CAN ID: 0x10400030";
+CM_ BO_ 2420113471 "Signal reference struct: OvalLightReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 126; original CAN ID: 0x1040003F";
+CM_ BO_ 2420113472 "Signal reference struct: OvalLightStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 105; original CAN ID: 0x10400040";
+CM_ BO_ 2420113487 "Signal reference struct: OvalLightReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 127; original CAN ID: 0x1040004F";
+CM_ BO_ 2420113664 "Signal reference struct: DoorStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 284; original CAN ID: 0x10400100";
+CM_ BO_ 2420113671 "Signal reference struct: DoorReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 143; original CAN ID: 0x10400107";
+CM_ BO_ 2420113921 "Signal reference struct: StepReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 409; original CAN ID: 0x10400201";
+CM_ BO_ 2420113928 "Signal reference struct: StepStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 425; original CAN ID: 0x10400208";
+CM_ BO_ 2422210560 "Signal reference struct: FootReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 158; original CAN ID: 0x10600000";
+CM_ BO_ 2422210576 "Signal reference struct: Foot1Status_t; source header: dbc_CAN_peripheral.h; source line: 344; original CAN ID: 0x10600010";
+CM_ BO_ 2422210592 "Signal reference struct: Foot2Status_t; source header: dbc_CAN_peripheral.h; source line: 374; original CAN ID: 0x10600020";
+CM_ BO_ 2423259136 "Signal reference struct: WiperMsg_t; source header: dbc_CAN_peripheral.h; source line: 469; original CAN ID: 0x10700000";
+CM_ BO_ 2423259151 "Signal reference struct: WiperMsg_t; source header: dbc_CAN_peripheral.h; source line: 470; original CAN ID: 0x1070000F";
+CM_ BO_ 2423259152 "Signal reference struct: WiperMsg_t; source header: dbc_CAN_peripheral.h; source line: 471; original CAN ID: 0x10700010";
+CM_ BO_ 2423259167 "Signal reference struct: WiperMsg_t; source header: dbc_CAN_peripheral.h; source line: 472; original CAN ID: 0x1070001F";
+CM_ BO_ 2424501748 "Signal reference struct: BMSStatusMsg1_t; source header: dbc_CAN_peripheral.h; source line: 498; original CAN ID: 0x1082F5F4";
+CM_ BO_ 2424567284 "Signal reference struct: BMSStatusMsg2_t; source header: dbc_CAN_peripheral.h; source line: 547; original CAN ID: 0x1083F5F4";
+CM_ BO_ 2424632820 "Signal reference struct: BMSStatusMsg3_t; source header: dbc_CAN_peripheral.h; source line: 600; original CAN ID: 0x1084F5F4";
+CM_ BO_ 2424698356 "Signal reference struct: BMSStatusMsg4_t; source header: dbc_CAN_peripheral.h; source line: 650; original CAN ID: 0x1085F5F4";
+CM_ BO_ 2424763892 "Signal reference struct: BMSStatusMsg5_t; source header: dbc_CAN_peripheral.h; source line: 714; original CAN ID: 0x1086F5F4";
+CM_ BO_ 2424829428 "Signal reference struct: BMSStatusMsg6_t; source header: dbc_CAN_peripheral.h; source line: 764; original CAN ID: 0x1087F5F4";
+CM_ BO_ 2424894964 "Signal reference struct: BMSStatusMsg7_t; source header: dbc_CAN_peripheral.h; source line: 810; original CAN ID: 0x1088F5F4";
+CM_ BO_ 2424960500 "Signal reference struct: BMSStatusMsg8_t; source header: dbc_CAN_peripheral.h; source line: 856; original CAN ID: 0x1089F5F4";
+CM_ BO_ 2550588916 "Signal reference struct: BMS2ChargerReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 968; original CAN ID: 0x1806E5F4";
+CM_ BO_ 2553649700 "Signal reference struct: BmsLotteLandmark6_t; source header: dbc_CAN_peripheral.h; source line: 1460; original CAN ID: 0x18359A24";
+CM_ BO_ 2553715236 "Signal reference struct: BmsLotteLandmark7_t; source header: dbc_CAN_peripheral.h; source line: 1518; original CAN ID: 0x18369A24";
+CM_ BO_ 2553780772 "Signal reference struct: BmsLotteLandmark8_t; source header: dbc_CAN_peripheral.h; source line: 1573; original CAN ID: 0x18379A24";
+CM_ BO_ 2565160996 "Signal reference struct: BmsLotteChargerInfo_t; source header: dbc_CAN_peripheral.h; source line: 1421; original CAN ID: 0x18E54024";
+CM_ BO_ 2566197540 "Signal reference struct: BmsLotteDrive1_t; source header: dbc_CAN_peripheral.h; source line: 1264; original CAN ID: 0x18F51124";
+CM_ BO_ 2566201892 "Signal reference struct: BmsLotteDrive2_t; source header: dbc_CAN_peripheral.h; source line: 1299; original CAN ID: 0x18F52224";
+CM_ BO_ 2566206244 "Signal reference struct: BmsLotteDrive3_t; source header: dbc_CAN_peripheral.h; source line: 1337; original CAN ID: 0x18F53324";
+CM_ BO_ 2566747428 "Signal reference struct: BmsLotteChargeVehicle_t; source header: dbc_CAN_peripheral.h; source line: 1377; original CAN ID: 0x18FD7524";
+CM_ BO_ 2566866420 "Signal reference struct: AirConReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 171; original CAN ID: 0x18FF45F4";
+CM_ BO_ 2566869221 "Signal reference struct: ChargerStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 1005; original CAN ID: 0x18FF50E5";
+CM_ BO_ 2566897978 "Signal reference struct: AirConStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 1056; original CAN ID: 0x18FFC13A";
+CM_ BO_ 2566897979 "Signal reference struct: AirConVersionMsg_t; source header: dbc_CAN_peripheral.h; source line: 1087; original CAN ID: 0x18FFC13B";
+CM_ BO_ 2566897980 "Signal reference struct: AirConJJK161StatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 1102; original CAN ID: 0x18FFC13C";
+CM_ BO_ 2566914064 "Signal reference struct: SignalDebugMsg_t; source header: dbc_CAN_peripheral.h; source line: 1169; original CAN ID: 0x19000010";
+CM_ BO_ 2566914080 "Signal reference struct: SignalDebugMsg_t; source header: dbc_CAN_peripheral.h; source line: 1170; original CAN ID: 0x19000020";
+CM_ BO_ 2600472576 "Signal reference struct: DTGSpeedRpmMsg_t; source header: dbc_CAN_peripheral.h; source line: 230; original CAN ID: 0x1B001000";
+CM_ BO_ 2600472592 "Signal reference struct: DTGBrakeInfoMsg_t; source header: dbc_CAN_peripheral.h; source line: 254; original CAN ID: 0x1B001010";
+CM_ BO_ 2633171444 "Signal reference struct: BMSStatusMsg11_t; source header: dbc_CAN_peripheral.h; source line: 908; original CAN ID: 0x1CF301F4";
+CM_ BO_ 2633171700 "Signal reference struct: BMSStatusMsg12_t; source header: dbc_CAN_peripheral.h; source line: 922; original CAN ID: 0x1CF302F4";
+CM_ BO_ 2633171956 "Signal reference struct: BMSChargingCurrent_t; source header: dbc_CAN_peripheral.h; source line: 1665; original CAN ID: 0x1CF303F4";
+CM_ BO_ 2633172212 "Signal reference struct: BMSChargingCurrentReply_t; source header: dbc_CAN_peripheral.h; source line: 1681; original CAN ID: 0x1CF304F4";
+CM_ BO_ 2634023168 "Signal reference struct: PeripheralVersionReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 272; original CAN ID: 0x1D000100";
+CM_ BO_ 2634023169 "Signal reference struct: PeripheralVersionRespMsg_t; source header: dbc_CAN_peripheral.h; source line: 1197; original CAN ID: 0x1D000101";
+CM_ BO_ 2634023170 "Signal reference struct: PeripheralVersionRespMsg_t; source header: dbc_CAN_peripheral.h; source line: 1198; original CAN ID: 0x1D000102";
+CM_ BO_ 2634023171 "Signal reference struct: PeripheralVersionRespMsg_t; source header: dbc_CAN_peripheral.h; source line: 1199; original CAN ID: 0x1D000103";
+CM_ BO_ 2634023172 "Signal reference struct: PeripheralVersionRespMsg_t; source header: dbc_CAN_peripheral.h; source line: 1200; original CAN ID: 0x1D000104";
+CM_ BO_ 2667577344 "Signal reference struct: Recovery_t; source header: dbc_CAN_peripheral.h; source line: 1653; original CAN ID: 0x1F000000";

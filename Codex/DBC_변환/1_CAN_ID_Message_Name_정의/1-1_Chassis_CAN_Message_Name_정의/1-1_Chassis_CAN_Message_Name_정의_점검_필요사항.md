@@ -2,7 +2,10 @@
 
 ## 사용자 확인 필요 요약
 
-- 점검 필요 항목 수: 17
+- 최초 점검 필요 항목 수: 17
+- 사용자 의견 반영 후 남은 점검 필요 항목 수: 0
+- `ErrorFrontSteering`, `ErrorRearSteering`은 `dbc_CAN.h`의 `ErrorSteering_t` typedef struct 연결로 확정했다.
+- Struct/DLC가 확인되지 않은 CAN_ID enum 항목 15개는 적용 제외로 확정했다.
 
 ## Transmit Node
 
@@ -15,6 +18,12 @@
 | --- | --- | --- | --- | --- |
 | additionalDbcCan.h | 137 | 0x12 | ErrorFrontSteering | 다음 typedef struct 확인 전 다른 코드가 나타남 |
 | additionalDbcCan.h | 138 | 0x13 | ErrorRearSteering | 다음 typedef struct 확인 전 다른 코드가 나타남 |
+
+처리 결과:
+
+- `ErrorFrontSteering`은 `dbc_CAN.h`에 정의된 `ErrorSteering_t` typedef struct로 연결 확정.
+- `ErrorRearSteering`은 `dbc_CAN.h`에 정의된 `ErrorSteering_t` typedef struct로 연결 확정.
+- 기존 BO 초안의 `BO_ 18`, `BO_ 19` 정의가 해당 확정 내용을 이미 반영하고 있으므로 DBC 초안 추가 변경은 없음.
 
 ## CAN_ID enum에는 있으나 Struct/DLC가 확인되지 않은 항목
 
@@ -36,6 +45,11 @@
 | dbc_MsgID_main.h | 283 | 0x7B3 | 1971 | CAN_ID_STARTUP_ASSERT | StartupAssertMsg | StartupAssertMsg: |
 | dbc_MsgID_main.h | 284 | 0x7BA | 1978 | CAN_ID_SECURITY_ASSERT | SecurityAssertMsg | SecurityAssertMsg: |
 
+처리 결과:
+
+- 위 15개 항목은 사용자 의견에 따라 적용 제외 확정.
+- `Codex/사용자_참고_사항.md`에 미추적 Message 목록으로 기록 완료.
+
 ## Struct에는 있으나 CAN_ID enum에는 없는 항목
 
 - 없음
@@ -55,7 +69,7 @@ CAN_ID enum에는 있으나 Struct/DLC가 확인되지 않은 항목
 Codex/ 위치에 사용자_참고_사항.md 을 생성하고 다음과 같이 기록
 
 ```
-##미추적 Message 목록
+## 미추적 Message 목록
 (0x708) VehicleVIN 
 (0x711) DriveDebugMsg 
 (0x718) Foot1DebugMsg 
@@ -72,3 +86,8 @@ Codex/ 위치에 사용자_참고_사항.md 을 생성하고 다음과 같이 �
 (0x7B3) StartupAssertMsg 
 (0x7BA) SecurityAssertMsg
 ```
+
+## 적용 결과
+
+- Chassis CAN 사용자 점검 필요사항은 모두 반영 완료.
+- 원본 헤더 파일은 수정하지 않음.
