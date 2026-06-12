@@ -3,13 +3,14 @@
 ## 생성 요약
 
 - messages: 85
-- signals: 444
-- reserved_excluded: 41
+- signals: 452
+- reserved_excluded: 40
 - big_endian_signals: 29
-- default_signals: 363
+- default_signals: 371
 - converted_signals: 81
 - `reserved`, `unused` 계열 bit-field는 DBC Signal에서 제외했다.
 - `CM_ BO_` comment는 DBC 하단에 모아 배치했다.
+- `Recovery`는 사용자 의견에 따라 원본 헤더를 수정하지 않고 산출물에서만 DLC 8, `byte0`~`byte7` Signal로 수동 반영했다.
 
 ## Signal 정의 목록
 
@@ -459,3 +460,17 @@
 | Body CAN | PeripheralPcanDBCVerMsg | 2634023172 | 0x1D000104 | dbc_CAN_peripheral.h | PeripheralVersionRespMsg_t | debug | uint64_t | 23 | 23 | 1 | little | unsigned | 1 | 0 | 0 | 1 |   | Vector__XXX | default raw bit-field range; no direct conversion assignment parsed | default |
 | Body CAN | PeripheralPcanDBCVerMsg | 2634023172 | 0x1D000104 | dbc_CAN_peripheral.h | PeripheralVersionRespMsg_t | minor | uint64_t | 24 | 24 | 8 | little | unsigned | 1 | 0 | 0 | 255 |   | Vector__XXX | default raw bit-field range; no direct conversion assignment parsed | default |
 | Body CAN | PeripheralPcanDBCVerMsg | 2634023172 | 0x1D000104 | dbc_CAN_peripheral.h | PeripheralVersionRespMsg_t | build | uint64_t | 32 | 32 | 32 | little | unsigned | 1 | 0 | 0 | 4294967295 |   | Vector__XXX | default raw bit-field range; no direct conversion assignment parsed | default |
+| Body CAN | Recovery | 2667577344 | 0x1F000000 | dbc_CAN_peripheral.h | Recovery_t | byte0 | uint64_t | 0 | 0 | 8 | little | unsigned | 1 | 0 | 0 | 255 |   | Vector__XXX | user override: Recovery treated as buf[8] byte placeholder without modifying original header | default / user override |
+| Body CAN | Recovery | 2667577344 | 0x1F000000 | dbc_CAN_peripheral.h | Recovery_t | byte1 | uint64_t | 8 | 8 | 8 | little | unsigned | 1 | 0 | 0 | 255 |   | Vector__XXX | user override: Recovery treated as buf[8] byte placeholder without modifying original header | default / user override |
+| Body CAN | Recovery | 2667577344 | 0x1F000000 | dbc_CAN_peripheral.h | Recovery_t | byte2 | uint64_t | 16 | 16 | 8 | little | unsigned | 1 | 0 | 0 | 255 |   | Vector__XXX | user override: Recovery treated as buf[8] byte placeholder without modifying original header | default / user override |
+| Body CAN | Recovery | 2667577344 | 0x1F000000 | dbc_CAN_peripheral.h | Recovery_t | byte3 | uint64_t | 24 | 24 | 8 | little | unsigned | 1 | 0 | 0 | 255 |   | Vector__XXX | user override: Recovery treated as buf[8] byte placeholder without modifying original header | default / user override |
+| Body CAN | Recovery | 2667577344 | 0x1F000000 | dbc_CAN_peripheral.h | Recovery_t | byte4 | uint64_t | 32 | 32 | 8 | little | unsigned | 1 | 0 | 0 | 255 |   | Vector__XXX | user override: Recovery treated as buf[8] byte placeholder without modifying original header | default / user override |
+| Body CAN | Recovery | 2667577344 | 0x1F000000 | dbc_CAN_peripheral.h | Recovery_t | byte5 | uint64_t | 40 | 40 | 8 | little | unsigned | 1 | 0 | 0 | 255 |   | Vector__XXX | user override: Recovery treated as buf[8] byte placeholder without modifying original header | default / user override |
+| Body CAN | Recovery | 2667577344 | 0x1F000000 | dbc_CAN_peripheral.h | Recovery_t | byte6 | uint64_t | 48 | 48 | 8 | little | unsigned | 1 | 0 | 0 | 255 |   | Vector__XXX | user override: Recovery treated as buf[8] byte placeholder without modifying original header | default / user override |
+| Body CAN | Recovery | 2667577344 | 0x1F000000 | dbc_CAN_peripheral.h | Recovery_t | byte7 | uint64_t | 56 | 56 | 8 | little | unsigned | 1 | 0 | 0 | 255 |   | Vector__XXX | user override: Recovery treated as buf[8] byte placeholder without modifying original header | default / user override |
+
+## 사용자 의견 반영
+
+- 원본 `Recovery_t`는 `buf[1]`과 `reserved:8`로 정의되어 있으나, 사용자 의견에 따라 Task 2 Body 산출물에서만 `buf[8]` 상당의 `byte0`~`byte7` 8개 Signal로 반영했다.
+- 원본 헤더 `include_Ohmio_Future/include/canbus/dbc_CAN_peripheral.h`는 수정하지 않았다.
+- `Recovery` Signal명은 최종 사용자 의견 기록과 DBC 산출물에 맞춰 `byte0`~`byte7`로 정리했다.

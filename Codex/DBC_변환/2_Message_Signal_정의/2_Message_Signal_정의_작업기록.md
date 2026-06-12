@@ -30,3 +30,10 @@
 - DBC 하단 `CM_ BO_` comment의 문자열 구분자를 DBC 문법에 맞게 큰따옴표로 복원했다.
 - 점검 필요사항의 추가 점검 메모가 Chassis/Body 대상 Struct 기준으로만 남도록 정리했다.
 - byte-swap 기반 Big Endian 항목은 Big Endian 표기 Signal 표에 기록되어 있어 중복 decode 미파싱 메모를 제거했다.
+
+## 2026-06-12 14:02:47 KST
+
+- 사용자 의견에 따라 Body CAN `Recovery`를 Task 2 산출물에서만 수동 보정했다.
+- 원본 헤더 파일은 수정하지 않았다.
+- `Recovery`는 DLC 8, `byte0`~`byte7` Signal 8개로 반영했다.
+- Body CAN Signal 수는 452개, 예약 제외 수는 40개로 갱신했다.

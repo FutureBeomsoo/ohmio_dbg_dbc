@@ -80,7 +80,11 @@
 | Signal2Debug | 2566914080 | 0x19000020 | SignalDebugMsg_t | reserved | 25 | 7 | dbc_CAN_peripheral.h |
 | Signal2Debug | 2566914080 | 0x19000020 | SignalDebugMsg_t | reserved1 | 34 | 6 | dbc_CAN_peripheral.h |
 | DTGBrakeInfoMsg | 2600472592 | 0x1B001010 | DTGBrakeInfoMsg_t | reserved | 24 | 8 | dbc_CAN_peripheral.h |
-| Recovery | 2667577344 | 0x1F000000 | Recovery_t | reserved | 0 | 8 | dbc_CAN_peripheral.h |
+
+## 사용자 의견 수동 반영
+
+- `Recovery`는 원본 헤더에서 `buf[1]`, `reserved:8`로 정의되어 있으나, 사용자 의견에 따라 원본 헤더를 수정하지 않고 Body Task 2 산출물에서만 DLC 8과 `byte0`~`byte7` Signal로 반영했다.
+- `Recovery` Signal명은 DBC Signal 이름 충돌을 피하고 최종 사용자 의견 기록과 맞도록 `byte0`~`byte7`로 정리했다.
 
 ## 기본값 적용 또는 수동 점검 대상
 
@@ -451,5 +455,42 @@
 | PeripheralPcanDBCVerMsg | debug | 2634023172 | 0x1D000104 | 23 | 1 | 1 | 0 | 0 | 1 | default |
 | PeripheralPcanDBCVerMsg | minor | 2634023172 | 0x1D000104 | 24 | 8 | 1 | 0 | 0 | 255 | default |
 | PeripheralPcanDBCVerMsg | build | 2634023172 | 0x1D000104 | 32 | 32 | 1 | 0 | 0 | 4294967295 | default |
+| Recovery | byte0 | 2667577344 | 0x1F000000 | 0 | 8 | 1 | 0 | 0 | 255 | default / user override |
+| Recovery | byte1 | 2667577344 | 0x1F000000 | 8 | 8 | 1 | 0 | 0 | 255 | default / user override |
+| Recovery | byte2 | 2667577344 | 0x1F000000 | 16 | 8 | 1 | 0 | 0 | 255 | default / user override |
+| Recovery | byte3 | 2667577344 | 0x1F000000 | 24 | 8 | 1 | 0 | 0 | 255 | default / user override |
+| Recovery | byte4 | 2667577344 | 0x1F000000 | 32 | 8 | 1 | 0 | 0 | 255 | default / user override |
+| Recovery | byte5 | 2667577344 | 0x1F000000 | 40 | 8 | 1 | 0 | 0 | 255 | default / user override |
+| Recovery | byte6 | 2667577344 | 0x1F000000 | 48 | 8 | 1 | 0 | 0 | 255 | default / user override |
+| Recovery | byte7 | 2667577344 | 0x1F000000 | 56 | 8 | 1 | 0 | 0 | 255 | default / user override |
 
 ## 추가 점검 메모
+
+- 추가 점검 메모 없음.
+
+## 사용자 의견
+원본 헤더 파일 건들지 않고
+Codex/DBC_변환/2_Message_Signal_정의/2-2_Body_CAN_Signal_정의 에 대해서
+사용자 의견으로
+```
+// message ID 0x1F000000 Recovery
+typedef struct{ 
+	union
+	{ 
+		uint8_t buf[8];
+		struct
+		{
+			uint64_t byte0 :8;    //n/a
+            uint64_t byte1 :8;    //n/a
+            uint64_t byte2 :8;    //n/a
+            uint64_t byte3 :8;    //n/a
+            uint64_t byte4 :8;    //n/a
+            uint64_t byte5 :8;    //n/a
+            uint64_t byte6 :8;    //n/a
+            uint64_t byte7 :8;    //n/a
+
+		} signals;
+	} raw;
+} Recovery_t;
+```
+반영해서 적용.

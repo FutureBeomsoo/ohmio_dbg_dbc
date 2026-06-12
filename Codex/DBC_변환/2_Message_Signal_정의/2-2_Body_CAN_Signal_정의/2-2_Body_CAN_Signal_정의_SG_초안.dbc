@@ -619,7 +619,15 @@ BO_ 2634023172 PeripheralPcanDBCVerMsg: 8 Vector__XXX
  SG_ minor : 24|8@1+ (1,0) [0|255] " " Vector__XXX
  SG_ build : 32|32@1+ (1,0) [0|4294967295] " " Vector__XXX
 
-BO_ 2667577344 Recovery: 1 Vector__XXX
+BO_ 2667577344 Recovery: 8 Vector__XXX
+ SG_ byte0 : 0|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ byte1 : 8|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ byte2 : 16|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ byte3 : 24|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ byte4 : 32|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ byte5 : 40|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ byte6 : 48|8@1+ (1,0) [0|255] " " Vector__XXX
+ SG_ byte7 : 56|8@1+ (1,0) [0|255] " " Vector__XXX
 
 CM_ BO_ 2164588560 "Signal reference struct: AVASReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 199; original CAN ID: 0x1050010";
 CM_ BO_ 2164588575 "Signal reference struct: AVASStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 1135; original CAN ID: 0x105001F";
