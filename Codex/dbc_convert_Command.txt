@@ -3,24 +3,29 @@
 Chassis CAN : CAN 2.0A , Baudrate 500k sample time 0.8
 Body    CAN : CAN 2.0B , Baudrate 250k sample time 0.8
 
-수행 작업 및 절차: 
-
-    1-1. *.dbc 파일 별 CAN ID 에 대한 Message Name 정의.
-    1-2. 각 Message에 대한 Siganald의 Name, Signed type, start bit, length, factor, offset, min, max 정의.
-    2-1. *.dbc 파일 별 CAN Enum 정의.
-    2-2  Signal Eunm 사용 정의.
-
 기본 작업 사항 :
     - 작업 시작 전 '<작업 명>_예정_작업계획.md'로 정리하여 동의 후 진행한다.
     - 작업 내용은 '<작업 명>_작업내용.md'로 정리한다.
     - 오류 사항은 '<작업 명>_오류사항.md'로 정리한다.
     - 사용자 점검 필요사항은 '<작업 명>_점검_필요사항.md'로 정리한다.
         필요 내용 누락, 메세지 정의 충돌 등의 사용자 개입이 및 확인이 필요한 내용.
+    - 모든 작업은 '<작업 명>_작업기록.md'로 정리하여 작업 log를 기록한다.
 
 절대 규칙 :
-    모든 작업 및 결과물은'Codex' 폴더 내에서 수행 및 생성한다. 
-    원본 폴더 및 파일은 절대로 수정 및 훼손 하지 않는다 (읽기 전용)
-    원본 폴더 및 파일의 수정이 필요할 경우, 'Codex'폴더내에 복사 하여 수행하며 해당 작업에 대한 설명 및 기록을 남긴다.
+    - 작업별로 폴더로 구분하여 해당 폴더내에서 이루어 진다.
+    - 세부 작업마다 반드시 별도 폴더를 생성한다.
+      예:
+          <작업 명>/
+          ├── <하위 작업 명>/
+          └── <하위 작업 명>/
+    - 모든 작업은 카테고리 별로 구분한다. - 추가 작업 및 세부 작업도 해당 카테고리 내 엄밀히 다른작업의 하위 카테고리 ( e.g. 수정작업)
+    - 작업 시작 전 '<작업 명>_예정_작업계획.md'로 정리하여 작성후 작업 중단하여 동의 후 진행한다.
+    - 모든 작업은 절대적으로 '<작업 명>_예정_작업계획.md'을 사용자가 확인후 동의 한 작업만 진행 한다.
+    - 사용자의 최초 "진행" 요청은 작업계획 동의로 간주하지 않는다.
+    - 모든 작업 및 결과물은'Codex' 폴더 내에서 수행 및 생성한다. 
+    - 원본 폴더 및 파일은 절대로 수정 및 훼손 하지 않는다 (읽기 전용)
+    - 원본 폴더 및 파일의 수정이 필요할 경우, 'Codex'폴더내에 복사 하여 수행하며 해당 작업에 대한 설명 및 기록을 남긴다.
+    - 모든 작업은 '<작업 명>_작업기록.md'로 정리하여 작업 log를 기록한다.
     
 
 기본 정의 :
@@ -91,7 +96,7 @@ Body    CAN : CAN 2.0B , Baudrate 250k sample time 0.8
                       의 경우 Example_Message1, Example_Message2, Example_Message3, Example_Message4 메세지는 각각 0x101, 0x102, 0x103, 0x104 의 CAN ID 를 가지는 Message 이며 
                       해당 메세지 모두 'ExampleMsg_t'와 같은 Type을 사용하며 모두 같은 Signal 구조의 Message를 정의하고 있다.
 
-                - 'Endian'은 기본적으로 Little Endian(intel)으로 고정하며 별도의 언급(Big Endian)이 있을경우 오류사항 및 사용자 점검 필요사항에 기록한다.
+                - 'Endian'은 기본적으로 Little Endian(intel)으로 고정하며 Big Endian(motorola)이 확인되는 경우 오류사항 및 사용자 점검 필요사항에 기록한다.
                 
                 - 'signals' 구조체 내의 '<Data Type>'은 해당 시그널의 값의 2진 데이터 표현 형태에 따른 정의를 설명한다.
                   'Signed' 형태의 경우는 'int64_t' 'Unsigned' 형태의 경우는 'uint64_t'로 정의 된다.
@@ -304,7 +309,22 @@ void <Type alias>_FromCAN(<Type alias>_t * msg)
 
 ```
 
-1-1 *.dbc 파일 별 CAN ID 에 대한 Message Name 정의.
+수행 작업 및 절차: 
+
+    1. *.dbc 파일 별 CAN ID 에 대한 Message Name 정의.
+    2. 각 Message에 대한 Siganald의 Name, Signed type, start bit, length, factor, offset, min, max 정의.
+    3. *.dbc 파일 별 CAN Enum 정의.
+    4.  Signal Eunm 사용 정의.
+
+    수행 대한 원본 폴더 : include_Ohmio_Future
+
+    Chassis CAN : additionalDbcCan.h, dbc_CAN.h, dbc_MsgID_main.h
+    Body    CAN : dbc_CAN_peripheral.h, dbc_MsgID_peripheral.h, Security_CAN.h, dbc_MsgID_security.h
+
+    참고 : ConversionHelper.h
+
+
+1. *.dbc 파일 별 CAN ID 에 대한 Message Name 정의.
 
     수행 작업 :
 
@@ -365,7 +385,7 @@ void <Type alias>_FromCAN(<Type alias>_t * msg)
         ...
         ```
 
-1-2 각 Message에 대한 Siganald의 Name, Signed type, start bit, length, factor, offset, min, max 정의.
+2. 각 Message에 대한 Siganald의 Name, Signed type, start bit, length, factor, offset, min, max 정의.
     
     수행작업 :
 
@@ -438,7 +458,7 @@ void <Type alias>_FromCAN(<Type alias>_t * msg)
         dbc파일 Signal 정의 Format으로 작성하는 경우 다음과 같이 작성할 수 있다.
 
         'Example_Message1(0x101)', 'Example_Message2(0x102)' 메세지는 같은 'ExampleMsg_t' Type의 Signal 구조를 포함하고 있다.
-        'ExampleMsg_t' 정의를 통해 해당 Message들이 포함 하고 있는 Signal의 'Signal Name', 'Start bit', 'Length', 'Signed'를 확인 할 수 있으며 'Endian'은 'Little Endian(intel)'으로 정의한다.
+        'ExampleMsg_t' 정의를 통해 해당 Message들이 포함 하고 있는 Signal 'Signal Name', 'Start bit', 'Length', 'Signed'를 확인 할 수 있으며 'Endian'은 'Little Endian(intel)'으로 정의한다.
         'ExampleMsg_ToCAN', 'ExampleMsg_FromCAN' 함수정의를 통해 'ExampleSig0', 'ExampleSig1'의 'Factor', 'Offset', 'Min', 'Max' 를 확인 할 수 있다.
         'Unit' 와 'Receive Node'는 별도의 언급이 없으므로 지침에 따라 '" "', 'Vector__XXX'로 정의.
 
@@ -468,3 +488,11 @@ void <Type alias>_FromCAN(<Type alias>_t * msg)
          SG_ SampleSig0 : 0|8@1+ (1,0) [0|255] " " Vector__XXX
          SG_ SampleSig1 : 16|16@1- (1,0) [-32768|32767] " " Vector__XXX
         ```
+
+        ```
+        assert(msg-><Signal Name> <= <Max>);
+        assert(msg-><Signal Name> >= <Max>);
+        <Data Type> temp = round(( msg-><Signal Name> - <Offset>) / <Factor> );
+        msg->raw.signals.<Signal Name> = (temp >> 8) + ((temp & 0xFF) << 8);
+        ```
+        위와 같은 형태의 경우 해당 Signal(Member)은 Big Endian 이다.

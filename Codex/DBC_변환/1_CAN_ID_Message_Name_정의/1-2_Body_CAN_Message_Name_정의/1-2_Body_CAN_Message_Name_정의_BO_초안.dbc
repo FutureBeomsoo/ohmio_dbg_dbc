@@ -1,0 +1,263 @@
+VERSION "1-2_Body_CAN_Message_Name_BO_Draft"
+
+NS_:
+    CM_
+
+BS_: 250000
+
+BU_: Vector__XXX
+
+BO_ 17104912 AVASReqMsg: 8 Vector__XXX
+CM_ BO_ 17104912 "Signal reference struct: AVASReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 199; original CAN ID: 0x1050010";
+
+BO_ 17104927 AVASStatusMsg: 8 Vector__XXX
+CM_ BO_ 17104927 "Signal reference struct: AVASStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 1135; original CAN ID: 0x105001F";
+
+BO_ 61055239 BmsLotteTotalChangeValue: 8 Vector__XXX
+CM_ BO_ 61055239 "Signal reference struct: BmsLotteTotalChangeValue_t; source header: dbc_CAN_peripheral.h; source line: 1607; original CAN ID: 0x3A3A107";
+
+BO_ 75497883 CollisionEventInfo: 8 Vector__XXX
+CM_ BO_ 75497883 "Signal reference struct: CollisionEventInfo_t; source header: Security_CAN.h; source line: 8; original CAN ID: 0x480019B";
+
+BO_ 75760027 CollisionEventConfig1: 8 Vector__XXX
+CM_ BO_ 75760027 "Signal reference struct: CollisionEventConfig1_t; source header: Security_CAN.h; source line: 25; original CAN ID: 0x484019B";
+
+BO_ 208073973 BMSReqMsg: 8 Vector__XXX
+CM_ BO_ 208073973 "Signal reference struct: BMSReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 11; original CAN ID: 0xC66F4F5";
+
+BO_ 217055983 BmsLotteVehiclecontroller: 8 Vector__XXX
+CM_ BO_ 217055983 "Signal reference struct: BmsLotteVehiclecontroller_t; source header: dbc_CAN_peripheral.h; source line: 1640; original CAN ID: 0xCF002EF";
+
+BO_ 217383204 BmsLotteStatus: 8 Vector__XXX
+CM_ BO_ 217383204 "Signal reference struct: BmsLotteStatus_t; source header: dbc_CAN_peripheral.h; source line: 1216; original CAN ID: 0xCF50124";
+
+BO_ 270532608 voiceReq: 8 Vector__XXX
+CM_ BO_ 270532608 "Signal reference struct: VoiceMsg_t; source header: dbc_CAN_peripheral.h; source line: 25; original CAN ID: 0x10200000";
+
+BO_ 270532623 voiceResp: 8 Vector__XXX
+CM_ BO_ 270532623 "Signal reference struct: VoiceMsg_t; source header: dbc_CAN_peripheral.h; source line: 26; original CAN ID: 0x1020000F";
+
+BO_ 271581440 FrontMainLightReqMsg: 8 Vector__XXX
+CM_ BO_ 271581440 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 39; original CAN ID: 0x10300100";
+
+BO_ 271581455 FrontMainLightStatusMsg: 8 Vector__XXX
+CM_ BO_ 271581455 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 40; original CAN ID: 0x1030010F";
+
+BO_ 271581456 FrontDipLightReqMsg: 8 Vector__XXX
+CM_ BO_ 271581456 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 41; original CAN ID: 0x10300110";
+
+BO_ 271581471 FrontDipLightStatusMsg: 8 Vector__XXX
+CM_ BO_ 271581471 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 42; original CAN ID: 0x1030011F";
+
+BO_ 271581472 FrontDayLightReqMsg: 8 Vector__XXX
+CM_ BO_ 271581472 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 43; original CAN ID: 0x10300120";
+
+BO_ 271581487 FrontDayLightStatusMsg: 8 Vector__XXX
+CM_ BO_ 271581487 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 44; original CAN ID: 0x1030012F";
+
+BO_ 271581488 FrontPosOutlineMarkerReqMsg: 8 Vector__XXX
+CM_ BO_ 271581488 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 45; original CAN ID: 0x10300130";
+
+BO_ 271581503 FrontPosOutlineMarkerStatusMsg: 8 Vector__XXX
+CM_ BO_ 271581503 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 46; original CAN ID: 0x1030013F";
+
+BO_ 271581696 RearReverseLightReqMsg: 8 Vector__XXX
+CM_ BO_ 271581696 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 47; original CAN ID: 0x10300200";
+
+BO_ 271581711 RearReverseLightStatusMsg: 8 Vector__XXX
+CM_ BO_ 271581711 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 48; original CAN ID: 0x1030020F";
+
+BO_ 271581712 RearTailOutlineMarkerReqMsg: 8 Vector__XXX
+CM_ BO_ 271581712 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 49; original CAN ID: 0x10300210";
+
+BO_ 271581727 RearTailOutlineMarkerStatusMsg: 8 Vector__XXX
+CM_ BO_ 271581727 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 50; original CAN ID: 0x1030021F";
+
+BO_ 271581728 RearRegLightReqMsg: 8 Vector__XXX
+CM_ BO_ 271581728 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 51; original CAN ID: 0x10300220";
+
+BO_ 271581743 RearRegLightStatusMsg: 8 Vector__XXX
+CM_ BO_ 271581743 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 52; original CAN ID: 0x1030022F";
+
+BO_ 271581952 HornReqMsg: 8 Vector__XXX
+CM_ BO_ 271581952 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 53; original CAN ID: 0x10300300";
+
+BO_ 271581967 HornStatusMsg: 8 Vector__XXX
+CM_ BO_ 271581967 "Signal reference struct: LightMsg_t; source header: dbc_CAN_peripheral.h; source line: 54; original CAN ID: 0x1030030F";
+
+BO_ 272629760 FrontLightReq: 8 Vector__XXX
+CM_ BO_ 272629760 "Signal reference struct: FrontLightMsg_t; source header: dbc_CAN_peripheral.h; source line: 66; original CAN ID: 0x10400000";
+
+BO_ 272629767 FrontLightStatus: 8 Vector__XXX
+CM_ BO_ 272629767 "Signal reference struct: FrontLightMsg_t; source header: dbc_CAN_peripheral.h; source line: 67; original CAN ID: 0x10400007";
+
+BO_ 272629768 RearLightReq: 8 Vector__XXX
+CM_ BO_ 272629768 "Signal reference struct: RearLightMsg_t; source header: dbc_CAN_peripheral.h; source line: 83; original CAN ID: 0x10400008";
+
+BO_ 272629775 RearLightStatus: 8 Vector__XXX
+CM_ BO_ 272629775 "Signal reference struct: RearLightMsg_t; source header: dbc_CAN_peripheral.h; source line: 84; original CAN ID: 0x1040000F";
+
+BO_ 272629776 OvalFrontLeftStatus: 8 Vector__XXX
+CM_ BO_ 272629776 "Signal reference struct: OvalLightStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 102; original CAN ID: 0x10400010";
+
+BO_ 272629791 OvalFrontLeftReq: 8 Vector__XXX
+CM_ BO_ 272629791 "Signal reference struct: OvalLightReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 124; original CAN ID: 0x1040001F";
+
+BO_ 272629792 OvalFrontRightStatus: 8 Vector__XXX
+CM_ BO_ 272629792 "Signal reference struct: OvalLightStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 103; original CAN ID: 0x10400020";
+
+BO_ 272629807 OvalFrontRightReq: 8 Vector__XXX
+CM_ BO_ 272629807 "Signal reference struct: OvalLightReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 125; original CAN ID: 0x1040002F";
+
+BO_ 272629808 OvalRearLeftStatus: 8 Vector__XXX
+CM_ BO_ 272629808 "Signal reference struct: OvalLightStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 104; original CAN ID: 0x10400030";
+
+BO_ 272629823 OvalRearLeftReq: 8 Vector__XXX
+CM_ BO_ 272629823 "Signal reference struct: OvalLightReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 126; original CAN ID: 0x1040003F";
+
+BO_ 272629824 OvalRearRightStatus: 8 Vector__XXX
+CM_ BO_ 272629824 "Signal reference struct: OvalLightStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 105; original CAN ID: 0x10400040";
+
+BO_ 272629839 OvalRearRightReq: 8 Vector__XXX
+CM_ BO_ 272629839 "Signal reference struct: OvalLightReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 127; original CAN ID: 0x1040004F";
+
+BO_ 272630016 DoorStatusMsg: 8 Vector__XXX
+CM_ BO_ 272630016 "Signal reference struct: DoorStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 284; original CAN ID: 0x10400100";
+
+BO_ 272630023 DoorReqMsg: 8 Vector__XXX
+CM_ BO_ 272630023 "Signal reference struct: DoorReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 143; original CAN ID: 0x10400107";
+
+BO_ 272630273 StepReqMsg: 8 Vector__XXX
+CM_ BO_ 272630273 "Signal reference struct: StepReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 409; original CAN ID: 0x10400201";
+
+BO_ 272630280 StepStatusMsg: 8 Vector__XXX
+CM_ BO_ 272630280 "Signal reference struct: StepStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 425; original CAN ID: 0x10400208";
+
+BO_ 274726912 FootReqMsg: 8 Vector__XXX
+CM_ BO_ 274726912 "Signal reference struct: FootReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 158; original CAN ID: 0x10600000";
+
+BO_ 274726928 Foot1Status: 5 Vector__XXX
+CM_ BO_ 274726928 "Signal reference struct: Foot1Status_t; source header: dbc_CAN_peripheral.h; source line: 344; original CAN ID: 0x10600010";
+
+BO_ 274726944 Foot2Status: 7 Vector__XXX
+CM_ BO_ 274726944 "Signal reference struct: Foot2Status_t; source header: dbc_CAN_peripheral.h; source line: 374; original CAN ID: 0x10600020";
+
+BO_ 275775488 Wiper1ReqMsg: 8 Vector__XXX
+CM_ BO_ 275775488 "Signal reference struct: WiperMsg_t; source header: dbc_CAN_peripheral.h; source line: 469; original CAN ID: 0x10700000";
+
+BO_ 275775503 Wiper1StatusMsg: 8 Vector__XXX
+CM_ BO_ 275775503 "Signal reference struct: WiperMsg_t; source header: dbc_CAN_peripheral.h; source line: 470; original CAN ID: 0x1070000F";
+
+BO_ 275775504 Wiper2ReqMsg: 8 Vector__XXX
+CM_ BO_ 275775504 "Signal reference struct: WiperMsg_t; source header: dbc_CAN_peripheral.h; source line: 471; original CAN ID: 0x10700010";
+
+BO_ 275775519 Wiper2StatusMsg: 8 Vector__XXX
+CM_ BO_ 275775519 "Signal reference struct: WiperMsg_t; source header: dbc_CAN_peripheral.h; source line: 472; original CAN ID: 0x1070001F";
+
+BO_ 277018100 BMSStatusMsg1: 8 Vector__XXX
+CM_ BO_ 277018100 "Signal reference struct: BMSStatusMsg1_t; source header: dbc_CAN_peripheral.h; source line: 498; original CAN ID: 0x1082F5F4";
+
+BO_ 277083636 BMSStatusMsg2: 8 Vector__XXX
+CM_ BO_ 277083636 "Signal reference struct: BMSStatusMsg2_t; source header: dbc_CAN_peripheral.h; source line: 547; original CAN ID: 0x1083F5F4";
+
+BO_ 277149172 BMSStatusMsg3: 8 Vector__XXX
+CM_ BO_ 277149172 "Signal reference struct: BMSStatusMsg3_t; source header: dbc_CAN_peripheral.h; source line: 600; original CAN ID: 0x1084F5F4";
+
+BO_ 277214708 BMSStatusMsg4: 8 Vector__XXX
+CM_ BO_ 277214708 "Signal reference struct: BMSStatusMsg4_t; source header: dbc_CAN_peripheral.h; source line: 650; original CAN ID: 0x1085F5F4";
+
+BO_ 277280244 BMSStatusMsg5: 8 Vector__XXX
+CM_ BO_ 277280244 "Signal reference struct: BMSStatusMsg5_t; source header: dbc_CAN_peripheral.h; source line: 714; original CAN ID: 0x1086F5F4";
+
+BO_ 277345780 BMSStatusMsg6: 8 Vector__XXX
+CM_ BO_ 277345780 "Signal reference struct: BMSStatusMsg6_t; source header: dbc_CAN_peripheral.h; source line: 764; original CAN ID: 0x1087F5F4";
+
+BO_ 277411316 BMSStatusMsg7: 8 Vector__XXX
+CM_ BO_ 277411316 "Signal reference struct: BMSStatusMsg7_t; source header: dbc_CAN_peripheral.h; source line: 810; original CAN ID: 0x1088F5F4";
+
+BO_ 277476852 BMSStatusMsg8: 8 Vector__XXX
+CM_ BO_ 277476852 "Signal reference struct: BMSStatusMsg8_t; source header: dbc_CAN_peripheral.h; source line: 856; original CAN ID: 0x1089F5F4";
+
+BO_ 403105268 BMS2ChargerReqMsg: 8 Vector__XXX
+CM_ BO_ 403105268 "Signal reference struct: BMS2ChargerReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 968; original CAN ID: 0x1806E5F4";
+
+BO_ 406166052 BmsLotteLandmark6: 8 Vector__XXX
+CM_ BO_ 406166052 "Signal reference struct: BmsLotteLandmark6_t; source header: dbc_CAN_peripheral.h; source line: 1460; original CAN ID: 0x18359A24";
+
+BO_ 406231588 BmsLotteLandmark7: 8 Vector__XXX
+CM_ BO_ 406231588 "Signal reference struct: BmsLotteLandmark7_t; source header: dbc_CAN_peripheral.h; source line: 1518; original CAN ID: 0x18369A24";
+
+BO_ 406297124 BmsLotteLandmark8: 8 Vector__XXX
+CM_ BO_ 406297124 "Signal reference struct: BmsLotteLandmark8_t; source header: dbc_CAN_peripheral.h; source line: 1573; original CAN ID: 0x18379A24";
+
+BO_ 417677348 BmsLotteChargerInfo: 8 Vector__XXX
+CM_ BO_ 417677348 "Signal reference struct: BmsLotteChargerInfo_t; source header: dbc_CAN_peripheral.h; source line: 1421; original CAN ID: 0x18E54024";
+
+BO_ 418713892 BmsLotteDrive1: 8 Vector__XXX
+CM_ BO_ 418713892 "Signal reference struct: BmsLotteDrive1_t; source header: dbc_CAN_peripheral.h; source line: 1264; original CAN ID: 0x18F51124";
+
+BO_ 418718244 BmsLotteDrive2: 8 Vector__XXX
+CM_ BO_ 418718244 "Signal reference struct: BmsLotteDrive2_t; source header: dbc_CAN_peripheral.h; source line: 1299; original CAN ID: 0x18F52224";
+
+BO_ 418722596 BmsLotteDrive3: 8 Vector__XXX
+CM_ BO_ 418722596 "Signal reference struct: BmsLotteDrive3_t; source header: dbc_CAN_peripheral.h; source line: 1337; original CAN ID: 0x18F53324";
+
+BO_ 419263780 BmsLotteChargeVehicle: 8 Vector__XXX
+CM_ BO_ 419263780 "Signal reference struct: BmsLotteChargeVehicle_t; source header: dbc_CAN_peripheral.h; source line: 1377; original CAN ID: 0x18FD7524";
+
+BO_ 419382772 AirConReqMsg: 8 Vector__XXX
+CM_ BO_ 419382772 "Signal reference struct: AirConReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 171; original CAN ID: 0x18FF45F4";
+
+BO_ 419385573 ChargerStatusMsg: 8 Vector__XXX
+CM_ BO_ 419385573 "Signal reference struct: ChargerStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 1005; original CAN ID: 0x18FF50E5";
+
+BO_ 419414330 AirConStatusMsg: 8 Vector__XXX
+CM_ BO_ 419414330 "Signal reference struct: AirConStatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 1056; original CAN ID: 0x18FFC13A";
+
+BO_ 419414331 AirConVersionMsg: 8 Vector__XXX
+CM_ BO_ 419414331 "Signal reference struct: AirConVersionMsg_t; source header: dbc_CAN_peripheral.h; source line: 1087; original CAN ID: 0x18FFC13B";
+
+BO_ 419414332 AirConJJK161StatusMsg: 8 Vector__XXX
+CM_ BO_ 419414332 "Signal reference struct: AirConJJK161StatusMsg_t; source header: dbc_CAN_peripheral.h; source line: 1102; original CAN ID: 0x18FFC13C";
+
+BO_ 419430416 Signal1Debug: 8 Vector__XXX
+CM_ BO_ 419430416 "Signal reference struct: SignalDebugMsg_t; source header: dbc_CAN_peripheral.h; source line: 1169; original CAN ID: 0x19000010";
+
+BO_ 419430432 Signal2Debug: 8 Vector__XXX
+CM_ BO_ 419430432 "Signal reference struct: SignalDebugMsg_t; source header: dbc_CAN_peripheral.h; source line: 1170; original CAN ID: 0x19000020";
+
+BO_ 452988928 DTGSpeedRpmMsg: 8 Vector__XXX
+CM_ BO_ 452988928 "Signal reference struct: DTGSpeedRpmMsg_t; source header: dbc_CAN_peripheral.h; source line: 230; original CAN ID: 0x1B001000";
+
+BO_ 452988944 DTGBrakeInfoMsg: 8 Vector__XXX
+CM_ BO_ 452988944 "Signal reference struct: DTGBrakeInfoMsg_t; source header: dbc_CAN_peripheral.h; source line: 254; original CAN ID: 0x1B001010";
+
+BO_ 485687796 BMSStatusMsg11: 8 Vector__XXX
+CM_ BO_ 485687796 "Signal reference struct: BMSStatusMsg11_t; source header: dbc_CAN_peripheral.h; source line: 908; original CAN ID: 0x1CF301F4";
+
+BO_ 485688052 BMSStatusMsg12: 8 Vector__XXX
+CM_ BO_ 485688052 "Signal reference struct: BMSStatusMsg12_t; source header: dbc_CAN_peripheral.h; source line: 922; original CAN ID: 0x1CF302F4";
+
+BO_ 485688308 BMSChargingCurrent: 8 Vector__XXX
+CM_ BO_ 485688308 "Signal reference struct: BMSChargingCurrent_t; source header: dbc_CAN_peripheral.h; source line: 1665; original CAN ID: 0x1CF303F4";
+
+BO_ 485688564 BMSChargingCurrentReply: 8 Vector__XXX
+CM_ BO_ 485688564 "Signal reference struct: BMSChargingCurrentReply_t; source header: dbc_CAN_peripheral.h; source line: 1681; original CAN ID: 0x1CF304F4";
+
+BO_ 486539520 PeripheralVersionReqMsg: 8 Vector__XXX
+CM_ BO_ 486539520 "Signal reference struct: PeripheralVersionReqMsg_t; source header: dbc_CAN_peripheral.h; source line: 272; original CAN ID: 0x1D000100";
+
+BO_ 486539521 PeripheralVersionMsg: 8 Vector__XXX
+CM_ BO_ 486539521 "Signal reference struct: PeripheralVersionRespMsg_t; source header: dbc_CAN_peripheral.h; source line: 1197; original CAN ID: 0x1D000101";
+
+BO_ 486539522 PeripheralBootVerMsg: 8 Vector__XXX
+CM_ BO_ 486539522 "Signal reference struct: PeripheralVersionRespMsg_t; source header: dbc_CAN_peripheral.h; source line: 1198; original CAN ID: 0x1D000102";
+
+BO_ 486539523 PeripheralOcanDBCVerMsg: 8 Vector__XXX
+CM_ BO_ 486539523 "Signal reference struct: PeripheralVersionRespMsg_t; source header: dbc_CAN_peripheral.h; source line: 1199; original CAN ID: 0x1D000103";
+
+BO_ 486539524 PeripheralPcanDBCVerMsg: 8 Vector__XXX
+CM_ BO_ 486539524 "Signal reference struct: PeripheralVersionRespMsg_t; source header: dbc_CAN_peripheral.h; source line: 1200; original CAN ID: 0x1D000104";
+
+BO_ 520093696 Recovery: 1 Vector__XXX
+CM_ BO_ 520093696 "Signal reference struct: Recovery_t; source header: dbc_CAN_peripheral.h; source line: 1653; original CAN ID: 0x1F000000";
