@@ -496,30 +496,3 @@ void <Type alias>_FromCAN(<Type alias>_t * msg)
         msg->raw.signals.<Signal Name> = (temp >> 8) + ((temp & 0xFF) << 8);
         ```
         위와 같은 형태의 경우 해당 Signal(Member)은 Big Endian 이다.
-
-원본 헤더 파일 건들지 않고
-Codex/DBC_변환/2_Message_Signal_정의/2-2_Body_CAN_Signal_정의 에 대해서
-사용자 의견으로
-```
-// message ID 0x1F000000 Recovery
-typedef struct{ 
-	union
-	{ 
-		uint8_t buf[8];
-		struct
-		{
-			uint64_t byte0 :8;    //n/a
-            uint64_t byte0 :8;    //n/a
-            uint64_t byte0 :8;    //n/a
-            uint64_t byte0 :8;    //n/a
-            uint64_t byte0 :8;    //n/a
-            uint64_t byte0 :8;    //n/a
-            uint64_t byte0 :8;    //n/a
-
-		} signals;
-	} raw;
-} Recovery_t;
-```
-반영해서 적용.
-
-
